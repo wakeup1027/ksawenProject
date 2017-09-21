@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>开奖号码录入</title>
+<link rel="stylesheet" href="${BASE_PATH}css/zxf_page.css" />
+<script src="${BASE_PATH}js/jquery.js"></script>
+<script type="text/javascript" src="${BASE_PATH}js/zxf_page.js"></script>
+<style>
+	.taclass td,.taclass th{border-right:1px solid #e1e1e1; border-top:1px solid #e1e1e1;}
+</style>
+</head>
+<body>
+<button onclick="xinjian()" style="padding:10px 35px; border:none; cursor:pointer; outline:none; background:#3C6CC7; border-radius:5px; color:#fff;">确新建开奖号码</button>
+<div style="margin-top:15px;">
+<table class="taclass" border="0" cellpadding="5" cellspacing="0" style="background:#ccc; width:600px; border-left:1px solid #e1e1e1;">
+	<tr>
+		<th style="width:159px;">编号</th>
+		<th style="width:159px;">开奖号码</th>
+		<th style="width:200px;">创建时间</th>
+		<th style="width:80px;">操作</th>
+	</tr>
+</table>
+<table class="taclass" id="dateBox" border="0" cellpadding="5" cellspacing="0" style="width:600px; text-align:center; border-left:1px solid #e1e1e1; border-bottom:1px solid #e1e1e1;">
+	<% if( dateList != null && dateList.~size > 0 ){var i=0;%>
+	<% for(item in dateList){if(i<10){%>
+	<tr>
+		<td style="width:161px;">${item.id}</td>
+		<td style="width:155px;">${item.Num}</td>
+		<td style="width:200px;">${item.creantime}</td>
+		<td style="width:80px;"><a href="javascript:void(0)" onclick="delNum(${item.id})">删除</a></td>
+	</tr>
+	<%i++;}else{break;}}}%>
+</table>
+<div class="zxf_pagediv" style="width:700px; margin-top: 30px;"></div>
+<div>
+<div id="opendResult" style="width:450px; padding-bottom:15px; margin:0px auto; margin-top:100px; position: absolute;  display: none;
+    top: 10px;   left: 15%;  background: #fff;  box-shadow: 0px 0px 50px #ccc;">
+    <div style="padding:10px 20px; background:#3C6CC7; color:#fff;">新建开奖号码</div>
+    <div style="padding: 15px;">
+	<table>
+		<tr>
+			<th>开奖号码：</th>
+			<td>
+				<input id="firstNum" type="text" style="border:1px solid #e1e1e1; padding:10px 20px; width:50px; border-radius:5px; outline:none;"/>
+				<input id="secondNum" type="text" style="border:1px solid #e1e1e1; padding:10px 20px; width:50px; border-radius:5px; outline:none;"/>
+				<input id="threeNum" type="text" style="border:1px solid #e1e1e1; padding:10px 20px; width:50px; border-radius:5px; outline:none;"/>
+			</td>
+		</tr>
+	</table>
+	</div>
+	<button onclick="sureBtn()" style="padding:10px 35px; border:none; cursor:pointer; margin-left:20px; outline:none; background:#3C6CC7; border-radius:5px; color:#fff;">确 定</button>
+</div>
+<script>
+function xinjian(){
+	$("#opendResult").css("display","block");
+}
+var fals = true;
+function sureBtn(){
+	var firstNum = $("#firstNum").val().trim();
+	var secondNum = $("#secondNum").val().trim();
+	var threeNum = $("#threeNum").val().trim();
+	console.log(firstNum+","+secondNum+","+threeNum);
+	if(firstNum==""||secondNum==""||threeNum==""){
+		alert("号码还没填全！");
+		return;
+	}
+	
+	if(isNaN(firstNum)){
+		alert("第一位不是数字");
+		return;
+	}
+	
+	if(isNaN(secondNum)){
+		alert("第二位不是数字");
+		return;
+	}
+	
+	if(isNaN(threeNum)){
+		alert("第三位不是数字");
+		return;
+	}
+	
+	if(firstNum.length>1){
+		alert("第一位只能输入一个数字");
+		return;
+	}
+	
+	if(secondNum.length>1){
+		alert("第二位只能输入一个数字");
+		return;
+	}
+	
+	if(threeNum.length>1){
+		alert("第三位只能输入一个数字");
+		return;
+	}
+	
+	if(fals){
+		$.ajax({
+			url:"${BASE_PATH}info/saveNum",
+			type:"POST",
+			data:{
+				"firstNum":firstNum,
+				"secondNum":secondNum,
+				"threeNum":threeNum
+			},
+			dataType:"json",
+			success: function(res) {
+				alert(res.msg);
+				if(res.state=="success"){
+					location.reload();
+				}
+			},error:function(){
+				alert("请求错误！");
+			}
+		});
+	}
+}
+
+function delNum(num){
+	$.ajax({
+			url:"${BASE_PATH}info/delNum/"+num,
+			type:"POST",
+			data:{},
+			dataType:"json",
+			success: function(res) {
+				alert(res.msg);
+				if(res.state=="success"){
+					location.reload();
+				}
+			},error:function(){
+				alert("请求错误！");
+			}
+		});
+}
+
+var date = [];
+var coutPage=10; //一页显示的数据数
+
+<% if( dateList != null && dateList.~size > 0 ){ %>
+	<% for(item in dateList){ %>
+			date.push(FormJson("${item.id}","${item.Num}","${item.creantime}"));
+	<%}
+}%>
+
+console.log(date);
+$(function(){
+	$(".zxf_pagediv").createPage({
+		pageNum: Math.ceil((date.length)/coutPage), //总页数
+		current: 1, //选中页
+		backfun: function(e) {
+			$("#dateBox").html("");
+			for(var j=(e.current-1)*coutPage; j<e.current*coutPage; j++){
+				if(j<date.length){
+					var ali = '<tr><td style="width:161px;">'+date[j].id+'</td><td style="width:155px;">'+date[j].Num+'</td><td style="width:200px;">'+date[j].creantime+'</td><td style="width:80px;"><a href="${BASE_PATH}info/delNum/'+date[j].id+'.html">删除</a></td></tr>';
+					$("#dateBox").append(ali);
+				}
+			}
+		}
+	});
+});
+
+function FormJson(id,Num,creantime){
+	var json = {};
+	json.id = id;
+	json.Num = Num;
+	json.creantime = creantime;
+	return json;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>结果总界面</title>
+<script src="${BASE_PATH}js/jquery.js"></script>
+</head>
+
+<body style="background:#FAFAFA;">
+<div style="width:1000px; height:106px; margin:20px auto;">
+	<div style="float:left; width:80px; height:80px; overflow:hidden;">
+		<img src="${BASE_PATH}images/cz-js_k3.png" style="width:80px; height:80px;"/>
+	</div>
+	<div style="float:left; width:476px; margin-left:20px;">
+		<div style="font-size:13px; color:#333;">
+			<p style="float:left; padding:0px; margin:0px;">菲律宾快3第<span style="font-weight: 700; color: #e73f3f;">${Llog.qiNum}</span>期开奖号码</p>
+			<p style="float:right; padding:0px; margin:0px;">每日<span class="total">${ON.openNum}</span>期，今日剩余<span class="left"><%if(ON.openNum==ON.spareNum){%>0<%}else{%>${ON.spareNum}<%}%></span>期</p>
+			<div style="clear:both;"></div>
+		</div>
+		<div style="border:1px solid #e5e5e5;  padding: 13px 0 13px 13px;  background: #fff;  border-radius: 3px;  overflow: hidden; margin-top: 13px;">
+			<div style="float:left;"><img src="${BASE_PATH}images/${Llog.firstNum}.png"/></div>
+			<div style="float:left; margin-left:5px;"><img src="${BASE_PATH}images/${Llog.secondNum}.png"/></div>
+			<div style="float:left; margin-left:5px;"><img src="${BASE_PATH}images/${Llog.threeNum}.png"/></div>
+			<div style="clear:both;"></div>
+		</div>
+	</div>
+	<div style="float:left; width:207px; text-align:right; font-size:14px;margin-top: 25px; margin-right: 20px;">
+		<div>距<span style="font-weight: 700; color: #e73f3f;" id="#nowQi">20170917062</span>期</div>
+		<div>开奖时间还剩</div>
+	</div>
+	<div style="float:right; font-size:14px; padding:15px; border:1px solid #e5e5e5; background:#fff;">
+		<div id="mmBox" style="float:left; width:60px; height:50px; background:#E73F3F; color:#fff; font-size:25px; line-height:50px; text-align:center; font-weight:700;">--</div>
+		<div style="float:left; line-height:50px; margin-left:5px;">分</div>
+		<div id="ssBox" style="float:left; width:60px; height:50px;background:#E73F3F; color:#fff; margin-left:5px; font-size:25px; line-height:50px; text-align:center; font-weight:700;">--</div>
+		<div style="float:left; line-height:50px; margin-left:5px;">秒</div>
+		<div style="clear:both;"></div>
+	</div>
+	<div style="clear:both;"></div>
+</div>
+<div style="width:1000px; margin:10px auto 10px auto; padding-top:20px; border-top: 1px solid #e5e5e5;">
+	<a href="${BASE_PATH}home/overres.html" target="main" style="float: left; height: 33px; line-height: 33px; color:#666; text-decoration:none; padding: 0 16px; border-radius: 3px; border: 1px solid #e5e5e5; margin-right: 10px; background: #fff;">历史开奖</a>
+	<a href="${BASE_PATH}home/resHtml.html" target="main" style="float: left; height: 33px; line-height: 33px; padding: 0 16px; color:#666; text-decoration:none; border-radius: 3px; border: 1px solid #e5e5e5; margin-right: 10px; background: #fff;">开奖走势
+	</a>
+	<div style="clear:both;"></div>
+</div>
+<div style="padding: 20px; overflow: hidden; background: #fff; width:959px; margin:0px auto; box-shadow: 0 0 10px #ddd;">
+	<iframe scrolling="no" name="main" src="${BASE_PATH}home/overres.html" frameborder="0" scrolling="auto" width="959px" height="2726px"></iframe>
+</div>
+<script>
+var countdown=${tlong};
+var sett;
+sendemail();
+//console.log(countdown);
+function sendemail(){
+	if(countdown<0){
+		$("#mmBox").text("--");
+		$("#ssBox").text("--");
+	}else{
+		settime();
+	}
+}
+
+function settime() {
+    if (countdown <= 0) { //倒计时完之后刷新整个页面
+    	var timer2=window.setTimeout(function(){
+			location.reload();
+			window.clearTimeout(timer2);
+		},2000);
+        return;
+    } else {
+    	var mmss = fromTime(countdown);
+    	countdown = parseInt(countdown)-1000;
+    	var Time = mmss.split(",");
+    	$("#mmBox").text((Time[0]<10?"0"+Time[0]:Time[0]));
+		$("#ssBox").text((Time[1]<10?"0"+Time[1]:Time[1]));
+    } 
+	sett = setTimeout(function() {settime();},1000) 
+}
+
+//把毫秒化成分和秒
+function fromTime(timeNum){
+	var mm = "";
+	var ss = "";
+	var allSS = parseInt(timeNum)/1000;
+	mm = Math.floor(allSS/60);
+	ss = allSS%60;
+	return mm+","+ss;
+}
+</script>
+</body>
+</html>

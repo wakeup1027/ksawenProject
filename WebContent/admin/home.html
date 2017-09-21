@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>快三后台配置</title>
+<script src="${BASE_PATH}js/jquery.js"></script>
+<style>
+body{padding:0px; margin:0px; font-family:'微软雅黑'}
+.leftMenu{width:130px; list-style-type:none; padding:0px; margin:20px auto; text-align:center;}
+.leftMenu li{line-height:35px; margin-top:15px; cursor:pointer;}
+.leftMenu li a{border-radius:5px; display: block; line-height: 35px; text-decoration:none;}
+.cur{background:#3C6CC7; color:#fff;}
+.noCur{background:#f6f6f6; color:#000;}
+</style>
+</head>
+<body>
+<div style="padding:40px 20px; background:#3C6CC7; color:#fff; font-size:18px;">快三后台系统开奖信息配置</div>
+<div style="margin-top:10px;">
+	<div style="background:#f6f6f6; border:1px solid #e1e1e1; float:left; width:200px; min-height:500px;">
+		<ul class="leftMenu">
+			<li><a href="${BASE_PATH}info/inpNum.html" target="main" class="cur">开奖号码</a></li>
+			<li><a href="${BASE_PATH}info/getNowTime.html" target="main">开奖时长设置</a></li>
+			<li><a href="${BASE_PATH}info/openHtml.html" target="main">设置一天开几期</a></li>
+			<li><a href="${BASE_PATH}info/getoverList.html" target="main">已开过的号码</a></li>
+			<li><a href="${BASE_PATH}info/setAutoStautus.html" target="main">设置自动开奖</a></li>
+			<li><a href="${BASE_PATH}info/getTaskStautus.html" target="main">停止/启动开奖器</a></li>
+		</ul>
+	</div>
+	<div style="float:left; width:1000px; min-height:500px; margin-left:10px;">
+		<iframe scrolling="no" name="main" src="${BASE_PATH}info/inpNum.html" frameborder="0" scrolling="auto" width="1020px" height="500px" style="margin-top: -7px" ></iframe>
+	</div>
+	<div style="clear:both;"></div>
+</div>
+<script>
+$(function(){
+	$(".leftMenu li a").click(function(){
+		$(".leftMenu li a").removeClass("cur").addClass("noCur");
+		$(this).removeClass("noCur").addClass("cur");
+	});
+});
+
+</script>
+</body>
+</html>

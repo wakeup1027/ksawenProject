@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>过期的号码</title>
+<link rel="stylesheet" href="${BASE_PATH}css/zxf_page.css" />
+<script src="${BASE_PATH}js/jquery.js"></script>
+<script type="text/javascript" src="${BASE_PATH}js/zxf_page.js"></script>
+<style>
+	.taclass td,.taclass th{border-right:1px solid #e1e1e1; border-top:1px solid #e1e1e1;}
+</style>
+</head>
+<body>
+<table class="taclass" border="0" cellpadding="5" cellspacing="0" style="background:#ccc; width:600px; border-left:1px solid #e1e1e1;">
+	<tr>
+		<th style="width:152px;">期号</th>
+		<th style="width:188px;">号码</th>
+		<th style="width:259px;">创建时间</th>
+	</tr>
+</table>
+<table class="taclass" id="dateBox" border="0" cellpadding="5" cellspacing="0" style="width:600px; text-align:center; border-left:1px solid #e1e1e1; border-bottom:1px solid #e1e1e1;">
+	<% if( dateList != null && dateList.~size > 0 ){var i=0;%>
+	<% for(item in dateList){if(i<10){%>
+	<tr>
+		<td style="width:152px;">${item.id}</td>
+		<td style="width:188px;">${item.Num}</td>
+		<td style="width:259px;">${item.creantime}</td>
+	</tr>
+	<%i++;}else{break;}}}%>
+</table>
+<div class="zxf_pagediv" style="width:700px; margin-top: 30px;"></div>
+<script>
+var date = [];
+var coutPage=10; //一页显示的数据数
+
+<% if( dateList != null && dateList.~size > 0 ){ %>
+	<% for(item in dateList){ %>
+			date.push(FormJson("${item.id}","${item.Num}","${item.creantime}"));
+	<%}
+}%>
+
+console.log(date);
+$(function(){
+	$(".zxf_pagediv").createPage({
+		pageNum: Math.ceil((date.length)/coutPage), //总页数
+		current: 1, //选中页
+		backfun: function(e) {
+			$("#dateBox").html("");
+			for(var j=(e.current-1)*coutPage; j<e.current*coutPage; j++){
+				if(j<date.length){
+					var ali = '<tr><td style="width:152px;">'+date[j].id+'</td><td style="width:188px;">'+date[j].Num+'</td><td style="width:259px;">'+date[j].creantime+'</td></tr>';
+					$("#dateBox").append(ali);
+				}
+			}
+		}
+	});
+});
+
+function FormJson(id,Num,creantime){
+	var json = {};
+	json.id = id;
+	json.Num = Num;
+	json.creantime = creantime;
+	return json;
+}
+</script>
+</body>
+</html>
