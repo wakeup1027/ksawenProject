@@ -32,10 +32,17 @@ public class TaskTimer extends BaseController{
 	private class Task extends TimerTask {
 		public Task() {
 			System.out.println("开始启动定时器");
+			//设置定时器的状态为启动状态
 			TaskTimerBean taskt = TaskTimerBean.dao.findById(1);
 			taskt.set("status", 1);
 			taskt.set("person", 0);
 			taskt.update();
+			
+			//设置重置开奖期数
+			OpenNum on = OpenNum.dao.findById(1);//查找一天开奖的期数
+			on.set("nowNum", 1);
+			on.set("spareNum", on.getInt("openNum"));
+			on.update();
 		}
 
 		@Override
@@ -93,9 +100,6 @@ public class TaskTimer extends BaseController{
 				taskt.set("person", 3);
 				taskt.update();
 				
-				on.set("nowNum", 1);
-				on.set("spareNum", on.getInt("openNum"));
-				on.update();
 				timer.cancel();
 				return;
 			}

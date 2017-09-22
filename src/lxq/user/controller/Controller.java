@@ -130,7 +130,9 @@ public class Controller extends BaseController {
 		renderJson(json.toJSONString());
 	}
 	
-	//开启自动开奖的设置
+	/**
+	 * 开启自动开奖的设置
+	 */
 	public void starAuto(){
 		IsAutoStart ysd = IsAutoStart.dao.findById(1);
 		ysd.set("status", 1);
@@ -143,13 +145,18 @@ public class Controller extends BaseController {
 		renderJson(json.toJSONString());
 	}
 	
-	//设置一天开几期
+	/**
+	 * 设置一天开几期的界面
+	 */
 	public void openHtml(){
 		OpenNum tkb = OpenNum.dao.findById(1);
 		setAttr("tkb",tkb);
 		render("/admin/openNum.html");
 	}
 	
+	/**
+	 * 设置一天开几期
+	 */
 	public void SetOpenNum(){
 		OpenNum tkb = OpenNum.dao.findById(1);
 		tkb.set("openNum", getParaToInt("time"));

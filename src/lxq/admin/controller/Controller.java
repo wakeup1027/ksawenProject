@@ -36,14 +36,22 @@ public class Controller extends BaseController{
 		
 		//获取每日开奖的期数
 		OpenNum ON = OpenNum.dao.findById(1);
+		ON.put("nextTime",getYearMd()+fstring.formNum(ON.getInt("openNum"),ON.getInt("nowNum")));
 		setAttr("ON",ON);
-		render("/computer/home.html");
+		renderAuto("/home.html");
 	}
 	
 	public void resHtml(){
 		List<LotteryLog> Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 85");
+		LotteryLog LlogCh = LotteryLog.dao.findFirst("SELECT * FROM lottery_log ORDER BY creantime DESC");
+		FormString fstring = new FormString();
+		LlogCh.put("firstNum", fstring.firstNum(LlogCh.getInt("Num")+""));
+		LlogCh.put("secondNum", fstring.secondNum(LlogCh.getInt("Num")+""));
+		LlogCh.put("threeNum", fstring.threeNum(LlogCh.getInt("Num")+""));
+		setAttr("Llog",LlogCh);
+		
 		setAttr("dateList",Llog);
-		render("/computer/index.html");
+		renderAuto("/index.html");
 	}
 	
 	public void overres(){
@@ -62,6 +70,26 @@ public class Controller extends BaseController{
 			chList.add(lolog);
 		}
 		setAttr("dateList",chList);
-		render("/computer/overres.html");
+		renderAuto("/overres.html");
+	}
+	
+	public void findRes(){
+		System.out.println(getPara("key"));
+		FormString fstring = new FormString();
+		List<LotteryLog> Llog = LotteryLog.dao.find("SELECT * FROM lottery_log WHERE qiNum LIKE '%"+getPara("key")+"%' ORDER BY creantime DESC LIMIT 57");
+		List<LotteryLog> chList = new ArrayList<LotteryLog>();
+		for(LotteryLog chLlog : Llog){
+			LotteryLog lolog = new LotteryLog();
+			lolog.put("qiNum", chLlog.getStr("qiNum"));
+			lolog.put("firstNum", fstring.firstNum(chLlog.getInt("Num")+""));
+			lolog.put("secondNum", fstring.secondNum(chLlog.getInt("Num")+""));
+			lolog.put("threeNum", fstring.threeNum(chLlog.getInt("Num")+""));
+			lolog.put("bigorsam", fstring.bigorsam(chLlog.getInt("Num")+""));
+			lolog.put("onlyAll", fstring.onlyAll(chLlog.getInt("Num")+""));
+			lolog.put("allNum", fstring.allNum(chLlog.getInt("Num")+""));
+			chList.add(lolog);
+		}
+		setAttr("dateList",chList);
+		render("/computer/findDate.html");
 	}
 }

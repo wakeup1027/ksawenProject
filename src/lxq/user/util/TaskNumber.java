@@ -38,7 +38,7 @@ public class TaskNumber extends BaseController{
 		@Override
 		public void run() {
 			OpenNum on = OpenNum.dao.findById(1);//查找一天开奖的期数
-			if(on.getInt("nowNum")<=on.getInt("openNum")){ //如果已开的期数大于规定的期数则应该是开完了
+			if(on.getInt("nowNum")<=on.getInt("openNum")){
 				//判断计时器是否结束掉，而且结束的方法必须写在执行run任务结束之后。
 				TaskTimerBean taskt = TaskTimerBean.dao.findById(1);
 				if(taskt.getInt("status")==0){
@@ -56,7 +56,7 @@ public class TaskNumber extends BaseController{
 					}
 					nowNum.update();
 				}
-			}else{
+			}else{ //如果已开的期数大于规定的期数则应该是开完了
 				System.out.println("超过今天规定的期数，我这个计数器作用的计时器也该结束了");
 				TimeNumOver tasktover = TimeNumOver.dao.findById(1);
 				tasktover.set("number", -1);

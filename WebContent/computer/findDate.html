@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>开奖结果期数</title>
+<script src="${BASE_PATH}js/jquery.js"></script>
+<style>
+table{text-align:center;}
+table td{border-right:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; height:46px;}
+</style>
+</head>
+
+<body style="background:#FAFAFA;">
+<div style="width:1000px; height:106px; margin:20px auto;">
+	<div style="float:left; width:80px; height:80px; overflow:hidden; border-radius:40px;">
+		<img src="${BASE_PATH}images/feilvbin.png" style="width:80px; height:80px;"/>
+	</div>
+	<div style="float:left; width:476px; margin-left:20px;">
+		<div style="border:1px solid #e5e5e5;  padding: 13px 0 13px 13px;  background: #fff;  border-radius: 3px;  overflow: hidden; margin-top: 13px;">
+			菲律宾快3搜索结果页
+		</div>
+	</div>
+	<div style="clear:both;"></div>
+</div>
+
+<div style="width:1000px; margin:10px auto 10px auto; padding-top:20px; border-top: 1px solid #e5e5e5;">
+	<a href="javascript:void(0)"></a>
+	<div style="clear:both;"></div>
+</div>
+
+<div style="width:959px; height:2726px; padding: 20px; overflow: hidden; background: #fff; margin:0px auto; box-shadow: 0 0 10px #ddd;">
+	<div style="margin:0 auto;">
+  		<table border="0" cellpadding="0" cellspacing="0" style="border-top:1px solid #e5e5e5; border-left:1px solid #e5e5e5;">
+   		 	<tr style="background:#F9F9F9;">
+      			<td style="width:230px;">期数</td>
+      			<td style="width:415px;">显示号码</td>
+      			<td style="width:314px;"colspan="3">总和</td>
+    		</tr>
+		</table>
+		<table border="0" cellpadding="0" cellspacing="0" style="border-left:1px solid #e5e5e5;">
+    	<% if( dateList != null && dateList.~size > 0 ){var i=0;%>
+		<% for(item in dateList){if(i<85){%>
+		<tr>
+      		<td style="width:230px;">${item.qiNum}</td>
+      		<td style="width:415px;">
+	  			<div style="width:106px; margin:0px auto;">
+					<div style="float:left;"><img src="${BASE_PATH}images/${item.firstNum}.png"/></div>
+					<div style="float:left; margin-left:5px;"><img src="${BASE_PATH}images/${item.secondNum}.png"/></div>
+					<div style="float:left; margin-left:5px;"><img src="${BASE_PATH}images/${item.threeNum}.png"/></div>
+					<div style="clear:both;"></div>
+				</div>
+	  		</td>
+      		<td style="width:103px;">${item.allNum}</td>
+      		<td style="width:103px;">${item.bigorsam}</td>
+      		<td style="width:102px;">${item.onlyAll}</td>
+    	</tr>
+		<%i++;}else{break;}}}%>
+  		</table>
+	</div>
+</div>
+</body>
+</html>

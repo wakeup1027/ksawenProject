@@ -96,6 +96,21 @@ function sureBtn(){
 		return;
 	}
 	
+	if(firstNum>6){
+		alert("第一位输入错误，只能小于6的数值");
+		return;
+	}
+	
+	if(secondNum>6){
+		alert("第二位输入错误，只能小于6的数值");
+		return;
+	}
+	
+	if(threeNum>6){
+		alert("第三位输入错误，只能小于6的数值");
+		return;
+	}
+	
 	if(fals){
 		$.ajax({
 			url:"${BASE_PATH}info/saveNum",
