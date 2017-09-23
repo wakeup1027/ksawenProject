@@ -137,4 +137,8 @@ public class HttpRequestDeviceUtils {
 		return b;// false pc true shouji
 
 	}
+	
+	private class Invalid{  
+        
+    }
 }

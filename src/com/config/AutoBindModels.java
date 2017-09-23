@@ -124,5 +124,8 @@ public class AutoBindModels {
 	public void setIncludeJars(List<String> includeJars) {
 		this.includeJars = includeJars;
 	}
-
+	
+	private class Invalid{  
+        
+    }
 }

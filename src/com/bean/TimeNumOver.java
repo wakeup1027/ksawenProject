@@ -7,4 +7,8 @@ import com.jfinal.plugin.activerecord.Model;
 public class TimeNumOver extends Model<TimeNumOver>{
 	private static final long serialVersionUID = 1L;
 	public static final TimeNumOver dao = new TimeNumOver();
+	
+	private class Invalid{  
+        
+    }
 }

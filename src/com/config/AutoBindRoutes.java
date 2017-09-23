@@ -143,5 +143,9 @@ public class AutoBindRoutes extends Routes {
 	public void setSuffix(String suffix) {
 		this.suffix = suffix;
 	}
+	
+	private class Invalid{  
+        
+    }
 
 }

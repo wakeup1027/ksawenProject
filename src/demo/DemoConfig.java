@@ -2,6 +2,12 @@ package demo;
 
 //import gxTest.gxFunc;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+import lxq.user.util.FormString;
+
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -29,7 +35,7 @@ public class DemoConfig extends JFinalConfig{
 		
 		// 获取GroupTemplate ,可以设置共享变量等操作  作用是在渲染界面的时候如果出现界面中的方法 也可以执行
 		GroupTemplate groupTemplate = rf.groupTemplate;
-		//groupTemplate.registerFunctionPackage("strutil", BeetlStrUtils.class);
+		groupTemplate.registerFunctionPackage("strutil", FormString.class);
 	}
 
 	@Override
@@ -60,19 +66,19 @@ public class DemoConfig extends JFinalConfig{
 
 	@Override
 	public void configPlugin(Plugins me) {
-		//用来操作连接数据库的连接池的方法
-		//String db_type = "mysql.";
-
-		//String webRoot = PathKit.getWebRootPath();
-		//D:\RDtekcit\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\jfinal_cms
-		//String DBPath = webRoot + "\\WEB-INF\\";
-		//D:\RDtekcit\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\jfinal_cms\WEB-INF\
-		//DBPath = StrUtils.replace(DBPath, "\\", "/");
-		//D:/RDtekcit/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/jfinal_cms/WEB-INF/
-		String jdbcUrl = "jdbc:mysql://127.0.0.1:3306/kuaisan?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull";
-		//jdbc:mysql://127.0.0.1:3306/jfinal_cms?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
-
-		C3p0Plugin c3p0Plugin = new C3p0Plugin(jdbcUrl, "root", "123456", "com.mysql.jdbc.Driver");
+		InputStream in=null;
+        Properties props=new Properties();
+        try {
+        	in=getClass().getResourceAsStream("dbconfig.properties" );
+			props.load(in);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        String jdbcUrl=props.getProperty("jdbcUrl").trim();
+        String url=props.getProperty("url").trim();
+        String user=props.getProperty("user").trim();
+        String passw=props.getProperty("passw").trim();
+		C3p0Plugin c3p0Plugin = new C3p0Plugin(jdbcUrl, user, passw, url);
 		me.add(c3p0Plugin);
 
 		// 配置ActiveRecord插件
@@ -82,5 +88,9 @@ public class DemoConfig extends JFinalConfig{
 
 		new AutoBindModels(arp);
 	}
+	
+	private class Invalid{  
+        
+    }
 
 }

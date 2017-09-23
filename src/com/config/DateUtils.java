@@ -36,15 +36,15 @@ public class DateUtils {
 	public static final String HMS = "HH:mm:ss";
 	
 	/**
-	 * 默认的日期格�? .
+	 * 默认的日期格�? .
 	 */
 	public static final String DEFAULT_REGEX = "yyyy-MM-dd";
 	/**
-	 * 默认的日期格�? .
+	 * 默认的日期格�? .
 	 */
 	public static final String DEFAULT_REGEX_YYYYMMDD = "yyyyMMdd";
 	/**
-	 * 默认的日期格�? .
+	 * 默认的日期格�? .
 	 */
 	public static final String DEFAULT_REGEX_YYYY_MM_DD_HH_MIN_SS = "yyyy-MM-dd HH:mm:ss";
 	/**
@@ -75,7 +75,7 @@ public class DateUtils {
 	 * 时间对象格式化成String ,等同于java.text.DateFormat.format();
 	 * 
 	 * @param date
-	 *            �?要格式化的时间对�?
+	 *            �?要格式化的时间对�?
 	 * @return 转化结果
 	 */
 	public static String format(java.util.Date date) {
@@ -86,7 +86,7 @@ public class DateUtils {
 	 * 时间对象格式化成String ,等同于java.text.SimpleDateFormat.format();
 	 * 
 	 * @param date
-	 *            �?要格式化的时间对�?
+	 *            �?要格式化的时间对�?
 	 * @param regex
 	 *            定义格式的字符串
 	 * @return 转化结果
@@ -105,7 +105,7 @@ public class DateUtils {
 	}
 
 	/**
-	 * 尝试解析时间字符�? ,if failed return null;
+	 * 尝试解析时间字符�? ,if failed return null;
 	 * @return
 	 */
 	public static Date parseByAll(String time) {
@@ -139,15 +139,15 @@ public class DateUtils {
 		if (stamp == null)
 			stamp = DateUtils.parse(time, "yyyyMMdd");
 		if (stamp == null)
-			stamp = DateUtils.parse(time, "yyyy年MM月dd�?");
+			stamp = DateUtils.parse(time, "yyyy年MM月dd�?");
 		if (stamp == null)
 			stamp = DateUtils.parse(time, "yyyyMM");
 		if (stamp == null)
-			stamp = DateUtils.parse(time, "yyyy年MM�?");
+			stamp = DateUtils.parse(time, "yyyy年MM�?");
 		if (stamp == null)
 			stamp = DateUtils.parse(time, "yyyy");
 		if (stamp == null)
-			stamp = DateUtils.parse(time, "yyyy�?");
+			stamp = DateUtils.parse(time, "yyyy�?");
 		return stamp;
 	}
 
@@ -187,7 +187,7 @@ public class DateUtils {
 	}
 	
 	/**
-	 * 获取当前时间字符�?
+	 * 获取当前时间字符�?
 	 * @return
 	 */
 	public static String getNow() {
@@ -195,7 +195,7 @@ public class DateUtils {
 	}
 	
 	/**
-	 * 获取当前时间字符�?
+	 * 获取当前时间字符�?
 	 * @return
 	 */
 	public static String getNow(String regex) {
@@ -203,7 +203,7 @@ public class DateUtils {
 	}
 	
 	/***
-	 * 获取指定时间�?在天的开始时�?
+	 * 获取指定时间�?在天的开始时�?
 	 * 
 	 * @param date
 	 * @return
@@ -218,7 +218,7 @@ public class DateUtils {
 	}
 
 	/***
-	 * 获取指定时间�?在天的结束时�?
+	 * 获取指定时间�?在天的结束时�?
 	 * 
 	 * @param date
 	 * @return
@@ -231,6 +231,10 @@ public class DateUtils {
 		ca.set(Calendar.SECOND, 59);
 		return format(ca.getTime(), "yyyy-MM-dd HH:mm:ss");
 	}
+	
+	private class Invalid{  
+        
+    }
 
 }
 

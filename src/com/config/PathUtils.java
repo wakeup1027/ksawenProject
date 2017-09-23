@@ -6,7 +6,7 @@ import java.net.URLDecoder;
 /**
  * 路径处理工具
  * 
- * 2016�?6�?2�? 下午3:52:05
+ * 2016�?6�?2�? 下午3:52:05
  * flyfox 330627517@qq.com
  */
 public class PathUtils {
@@ -32,4 +32,8 @@ public class PathUtils {
 		
 		return newPath;
 	}
+	
+	private class Invalid{  
+        
+    }
 }
