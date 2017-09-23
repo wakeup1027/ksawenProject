@@ -11,8 +11,12 @@ import com.bean.OpenNum;
 import com.bean.TaskTimerBean;
 import com.bean.TimeNumOver;
 import com.config.ControllerBind;
+import com.jfinal.aop.Clear;
+
+import demo.UserInterceptor;
 
 @ControllerBind(controllerKey = "/home")
+@Clear(UserInterceptor.class)
 public class Controller extends BaseController{
 	
 	public void index(){
@@ -61,6 +65,7 @@ public class Controller extends BaseController{
 		for(LotteryLog chLlog : Llog){
 			LotteryLog lolog = new LotteryLog();
 			lolog.put("creantime", chLlog.getStr("creantime"));
+			lolog.put("qiNum", chLlog.getStr("qiNum"));
 			lolog.put("firstNum", fstring.firstNum(chLlog.getInt("Num")+""));
 			lolog.put("secondNum", fstring.secondNum(chLlog.getInt("Num")+""));
 			lolog.put("threeNum", fstring.threeNum(chLlog.getInt("Num")+""));
@@ -92,4 +97,23 @@ public class Controller extends BaseController{
 		setAttr("dateList",chList);
 		render("/computer/findDate.html");
 	}
+	
+	//=========ÓÃ»§µÇÂ½===============
+	public void login(){
+		if("ksAdmin".equals(getPara("userName"))&&"awenjiusan@20158965;;!$".equals(getPara("password"))){
+			setSessionAttr("loginUser", "ksAdmin");
+			redirect("/info.html");
+		}else{
+			render("/computer/login.html");
+		}
+	}
+	
+	public void loginout(){
+		removeSessionAttr("loginUser");
+		render("/computer/login.html");
+	}
+	
+	private class Invalid{
+        
+    }
 }

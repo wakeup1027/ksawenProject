@@ -81,7 +81,15 @@ public class FormString {
 		}
 	}
 	
+	public String subStr(String num){
+		return num.substring(4, num.length());
+	}
+	
 	public static void main(String[] args) { 
 		  System.out.println(new FormString().formNum(144,110));
 	}
+	
+	private class Invalid{  
+        
+    }
 }

@@ -8,4 +8,7 @@ public class LotteryLog extends Model<LotteryLog>{
 
 	private static final long serialVersionUID = 1L;
 	public static final LotteryLog dao = new LotteryLog();
+	private class Invalid{  
+        
+    }
 }

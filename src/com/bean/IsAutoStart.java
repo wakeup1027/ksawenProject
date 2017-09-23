@@ -8,4 +8,7 @@ public class IsAutoStart extends Model<IsAutoStart> {
 	private static final long serialVersionUID = 1L;
 	public static final IsAutoStart dao = new IsAutoStart();
 	
+	private class Invalid{  
+        
+    }
 }

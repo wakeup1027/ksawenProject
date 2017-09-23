@@ -9,4 +9,8 @@ public class TaskTimerBean extends Model<TaskTimerBean>{
 	private static final long serialVersionUID = 1L;
 	public static final TaskTimerBean dao = new TaskTimerBean();
 	
+	private class Invalid{  
+        
+    }
+	
 }

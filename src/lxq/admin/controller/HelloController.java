@@ -52,5 +52,9 @@ public class HelloController extends BaseController{
 		System.out.println("é˜¿è¨å¾·ï¼š"+canshu);
 		renderJson("{\"state\":\"success\",\"msg\":\"³É¹¦£¡\"}");
 	}
+	
+	private class Invalid{  
+        
+    }
 
 }

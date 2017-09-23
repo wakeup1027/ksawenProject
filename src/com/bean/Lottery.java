@@ -9,4 +9,7 @@ public class Lottery extends Model<Lottery>{
 	private static final long serialVersionUID = 1L;
 	public static final Lottery dao = new Lottery();
 
+	private class Invalid{  
+        
+    }
 }

@@ -14,7 +14,11 @@ import com.bean.OpenNum;
 import com.bean.TaskTimerBean;
 import com.bean.TimeLong;
 import com.config.ControllerBind;
+import com.jfinal.aop.Before;
 
+import demo.UserInterceptor;
+
+@Before(UserInterceptor.class)
 @ControllerBind(controllerKey = "/info")
 public class Controller extends BaseController {
 	
@@ -170,5 +174,9 @@ public class Controller extends BaseController {
 		}
 		renderJson(json.toJSONString());
 	}
+	
+	private class Invalid{  
+        
+    }
 	
 }
