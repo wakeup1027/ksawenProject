@@ -20,8 +20,8 @@ table td{border-right:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; height
 	<% for(item in dateList){if(i<56){%>
 	<tr>
 	  <td>
-	  	<div style="color:#999; font-size:16px;line-height:30px;">${strutil.subStr(item.qiNum)}期</div>
-	  	<div style="line-height:30px;">${item.creantime}</div>
+	  	<div style="color:#999; font-size:16px;line-height:30px;">${strutil.subStr(item.qiNum,8)}期</div>
+	  	<div style="line-height:30px;">${strutil.subStr(item.creantime,11)}</div>
 	  </td>
       <td>
 	  		<div style="margin:0px auto; width:110px; margin-top:10px;">
