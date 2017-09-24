@@ -82,7 +82,7 @@ public class FormString {
 	}
 	
 	public String subStr(String num){
-		return num.substring(4, num.length());
+		return num.substring(8, num.length());
 	}
 	
 	public static void main(String[] args) { 
