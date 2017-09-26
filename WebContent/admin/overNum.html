@@ -11,24 +11,58 @@
 </style>
 </head>
 <body>
-<table class="taclass" border="0" cellpadding="5" cellspacing="0" style="background:#ccc; width:600px; border-left:1px solid #e1e1e1;">
+<div onclick="addNum()" style="padding:10px 35px; border:none; cursor:pointer; outline:none; background:#3C6CC7; border-radius:5px; color:#fff; float:left;">添加开奖记录</div>
+<div style="clear:both;"></div>
+<table class="taclass" border="0" cellpadding="5" cellspacing="0" style="background:#ccc; margin-top:15px; width:600px; border-left:1px solid #e1e1e1;">
 	<tr>
 		<th style="width:152px;">期号</th>
-		<th style="width:188px;">号码</th>
-		<th style="width:259px;">创建时间</th>
+		<th style="width:158px;">号码</th>
+		<th style="width:209px;">创建时间</th>
+		<th style="width:80px;">操作</th>
 	</tr>
 </table>
 <table class="taclass" id="dateBox" border="0" cellpadding="5" cellspacing="0" style="width:600px; text-align:center; border-left:1px solid #e1e1e1; border-bottom:1px solid #e1e1e1;">
 	<% if( dateList != null && dateList.~size > 0 ){var i=0;%>
 	<% for(item in dateList){if(i<10){%>
 	<tr>
-		<td style="width:152px;">${item.id}</td>
-		<td style="width:188px;">${item.Num}</td>
-		<td style="width:259px;">${item.creantime}</td>
+		<td style="width:152px;">${item.qiNum}</td>
+		<td style="width:158px;">${item.Num}</td>
+		<td style="width:209px;">${item.creantime}</td>
+		<td style="width:80px;"><button onclick="delthis(${item.id})">删除</button></td>
 	</tr>
 	<%i++;}else{break;}}}%>
 </table>
 <div class="zxf_pagediv" style="width:700px; margin-top: 30px;"></div>
+
+<div id="opendResult" style="width:450px; padding-bottom:15px; margin:0px auto; margin-top:100px; position: absolute;  display: none;
+    top: 10px;   left: 15%;  background: #fff;  box-shadow: 0px 0px 50px #ccc;">
+    <div style="padding:10px 20px; background:#3C6CC7; color:#fff;">新建开奖号码</div>
+    <div style="padding: 15px;">
+	<table>
+		<tr>
+			<th style="text-align:right;">期号：</th>
+			<td>
+				<input id="qiNum" type="text" style="border:1px solid #e1e1e1; padding:10px 20px; width:243px; border-radius:5px; outline:none;"/>
+			</td>
+		</tr>
+		<tr>
+			<th>开奖号码：</th>
+			<td>
+				<input id="firstNum" type="text" style="border:1px solid #e1e1e1; padding:10px 20px; width:50px; border-radius:5px; outline:none;"/>
+				<input id="secondNum" type="text" style="border:1px solid #e1e1e1; padding:10px 20px; width:50px; border-radius:5px; outline:none;"/>
+				<input id="threeNum" type="text" style="border:1px solid #e1e1e1; padding:10px 20px; width:50px; border-radius:5px; outline:none;"/>
+			</td>
+		</tr>
+		<tr>
+			<th style="text-align:right;">创建时间：</th>
+			<td>
+				<input id="creantime" type="text" style="border:1px solid #e1e1e1; padding:10px 20px; width:243px; border-radius:5px; outline:none;"/>
+			</td>
+		</tr>
+	</table>
+	</div>
+	<button onclick="sureBtn()" style="padding:10px 35px; border:none; cursor:pointer; margin-left:20px; outline:none; background:#3C6CC7; border-radius:5px; color:#fff;">确 定</button>
+</div>
 <script>
 var date = [];
 var coutPage=10; //一页显示的数据数
@@ -39,7 +73,6 @@ var coutPage=10; //一页显示的数据数
 	<%}
 }%>
 
-console.log(date);
 $(function(){
 	$(".zxf_pagediv").createPage({
 		pageNum: Math.ceil((date.length)/coutPage), //总页数
@@ -55,6 +88,121 @@ $(function(){
 		}
 	});
 });
+
+function addNum(){
+	$("#opendResult").css("display","block");
+}
+var fals = true;
+function sureBtn(){
+	var firstNum = $("#firstNum").val().trim();
+	var secondNum = $("#secondNum").val().trim();
+	var threeNum = $("#threeNum").val().trim();
+	var qiNum = $("#qiNum").val().trim();
+	var creantime = $("#creantime").val().trim();
+	console.log(qiNum+","+firstNum+","+secondNum+","+threeNum);
+	if(qiNum==""){
+		alert("请填写期号");
+		return;
+	}
+	if(firstNum==""||secondNum==""||threeNum==""){
+		alert("号码还没填全！");
+		return;
+	}
+	
+	if(isNaN(firstNum)){
+		alert("第一位不是数字");
+		return;
+	}
+	
+	if(isNaN(secondNum)){
+		alert("第二位不是数字");
+		return;
+	}
+	
+	if(isNaN(threeNum)){
+		alert("第三位不是数字");
+		return;
+	}
+	
+	if(firstNum.length>1){
+		alert("第一位只能输入一个数字");
+		return;
+	}
+	
+	if(secondNum.length>1){
+		alert("第二位只能输入一个数字");
+		return;
+	}
+	
+	if(threeNum.length>1){
+		alert("第三位只能输入一个数字");
+		return;
+	}
+	
+	if(firstNum>6){
+		alert("第一位输入错误，只能小于6的数值");
+		return;
+	}
+	
+	if(secondNum>6){
+		alert("第二位输入错误，只能小于6的数值");
+		return;
+	}
+	
+	if(threeNum>6){
+		alert("第三位输入错误，只能小于6的数值");
+		return;
+	}
+	
+	if(fals){
+		fals = false;
+		$.ajax({
+			url:"${BASE_PATH}info/saveOldNum",
+			type:"POST",
+			data:{
+				"qiNum":qiNum,
+				"creantime":creantime,
+				"firstNum":firstNum,
+				"secondNum":secondNum,
+				"threeNum":threeNum
+			},
+			dataType:"json",
+			success: function(res) {
+				alert(res.msg);
+				if(res.state=="success"){
+					location.reload();
+				}
+			},error:function(){
+				alert("请求错误！");
+			}
+		});
+	}
+}
+
+function delthis(num){
+	var r=confirm("确定要删除该记录吗？")
+  	if (r==true){
+    	$.ajax({
+			url:"${BASE_PATH}info/delOldNum",
+			type:"POST",
+			data:{
+				"num":num
+			},
+			dataType:"json",
+			success: function(res) {
+				if(res.state=="success"){
+					location.reload();
+				}else{
+					alert(res.msg);
+				}
+			},error:function(){
+				alert("请求错误！");
+			}
+		});
+    }else{
+   		window.location.reload()
+    }
+}
 
 function FormJson(id,Num,creantime){
 	var json = {};

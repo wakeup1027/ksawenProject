@@ -72,6 +72,36 @@ public class Controller extends BaseController {
 		renderJson(json.toJSONString());
 	}
 	
+	public void saveOldNum(){
+		JSONObject json = new JSONObject();
+		LotteryLog ltt = new LotteryLog();
+		ltt.set("qiNum",getPara("qiNum"));
+		ltt.set("Num",Integer.parseInt(getPara("firstNum")+""+getPara("secondNum")+""+getPara("threeNum")));
+		ltt.set("creantime",getPara("creantime"));
+		if(ltt.save()){
+			json.put("state", "success");
+			json.put("msg", "ºÅÂëÂ¼Èë³É¹¦£¡");
+		}else{
+			json.put("state", "error");
+			json.put("msg", "ºÅÂëÂ¼ÈëÊ§°Ü£¡ÇëÉÔºóÔÙÊÔ£¡");
+		}
+		renderJson(json.toJSONString());
+	}
+	
+	public void delOldNum(){
+		JSONObject json = new JSONObject();
+		LotteryLog ltt = new LotteryLog();
+		ltt.set("id", getPara("num"));
+		if(ltt.delete()){
+			json.put("state", "success");
+			json.put("msg", "ºÅÂëÉ¾³ı³É¹¦£¡");
+		}else{
+			json.put("state", "error");
+			json.put("msg", "ºÅÂëÉ¾³ıÊ§°Ü£¡ÇëÉÔºóÔÙÊÔ£¡");
+		}
+		renderJson(json.toJSONString());
+	}
+	
 	public void delNum(){
 		JSONObject json = new JSONObject();
 		int numid = getParaToInt();
