@@ -1,5 +1,6 @@
 package lxq.user.util;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -58,6 +59,12 @@ public class TaskTimer extends BaseController{
 						llog.put("qiNum",getYearMd()+fs.formNum(on.getInt("openNum"),on.getInt("nowNum")));
 						llog.put("Num",fs.getThreeNum());
 						llog.put("creantime",getNow());
+						List<LotteryLog> ltt = LotteryLog.dao.find("SELECT * FROM lottery_log WHERE qiNum = '"+llog.getStr("qiNum")+"'");
+						if(ltt.size()>0){
+							for(LotteryLog lol : ltt){
+								lol.delete();
+							}
+						}
 						llog.save();
 						//重新开始计时
 						TimeNumOver tlong = TimeNumOver.dao.findById(1);
@@ -85,6 +92,12 @@ public class TaskTimer extends BaseController{
 					llog.put("qiNum",getYearMd()+fs.formNum(on.getInt("openNum"),on.getInt("nowNum")));
 					llog.put("Num",nowNum.getInt("Num"));
 					llog.put("creantime",getNow());
+					List<LotteryLog> ltt = LotteryLog.dao.find("SELECT * FROM lottery_log WHERE qiNum = '"+llog.getStr("qiNum")+"'");
+					if(ltt.size()>0){
+						for(LotteryLog lol : ltt){
+							lol.delete();
+						}
+					}
 					if(llog.save()){
 						nowNum.delete();
 						//重新开始计算期数

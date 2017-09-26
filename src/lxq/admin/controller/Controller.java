@@ -33,11 +33,18 @@ public class Controller extends BaseController{
 		//获取开奖记录
 		LotteryLog Llog = LotteryLog.dao.findFirst("SELECT * FROM lottery_log ORDER BY creantime DESC");
 		FormString fstring = new FormString();
-		Llog.put("firstNum", fstring.firstNum(Llog.getInt("Num")+""));
-		Llog.put("secondNum", fstring.secondNum(Llog.getInt("Num")+""));
-		Llog.put("threeNum", fstring.threeNum(Llog.getInt("Num")+""));
-		setAttr("Llog",Llog);
-		
+		if(null==Llog){
+			Llog = new LotteryLog();
+			Llog.put("firstNum", 7);
+			Llog.put("secondNum", 8);
+			Llog.put("threeNum", 9);
+			setAttr("Llog",Llog);
+		}else{
+			Llog.put("firstNum", fstring.firstNum(Llog.getInt("Num")+""));
+			Llog.put("secondNum", fstring.secondNum(Llog.getInt("Num")+""));
+			Llog.put("threeNum", fstring.threeNum(Llog.getInt("Num")+""));
+			setAttr("Llog",Llog);
+		}
 		//获取每日开奖的期数
 		OpenNum ON = OpenNum.dao.findById(1);
 		ON.put("nextTime",getYearMd()+fstring.formNum(ON.getInt("openNum"),ON.getInt("nowNum")));
@@ -47,14 +54,21 @@ public class Controller extends BaseController{
 	
 	public void resHtml(){
 		List<LotteryLog> Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 85");
-		LotteryLog LlogCh = LotteryLog.dao.findFirst("SELECT * FROM lottery_log ORDER BY creantime DESC");
-		FormString fstring = new FormString();
-		LlogCh.put("firstNum", fstring.firstNum(LlogCh.getInt("Num")+""));
-		LlogCh.put("secondNum", fstring.secondNum(LlogCh.getInt("Num")+""));
-		LlogCh.put("threeNum", fstring.threeNum(LlogCh.getInt("Num")+""));
-		setAttr("Llog",LlogCh);
+		if(Llog.size()==0){
+			Llog = new ArrayList<LotteryLog>();
+			LotteryLog LlogCh = new LotteryLog();
+			setAttr("Llog",LlogCh);
+			setAttr("dateList",Llog);
+		}else{
+			LotteryLog LlogCh = LotteryLog.dao.findFirst("SELECT * FROM lottery_log ORDER BY creantime DESC");
+			FormString fstring = new FormString();
+			LlogCh.put("firstNum", fstring.firstNum(LlogCh.getInt("Num")+""));
+			LlogCh.put("secondNum", fstring.secondNum(LlogCh.getInt("Num")+""));
+			LlogCh.put("threeNum", fstring.threeNum(LlogCh.getInt("Num")+""));
+			setAttr("Llog",LlogCh);
+			setAttr("dateList",Llog);
+		}
 		
-		setAttr("dateList",Llog);
 		renderAuto("/index.html");
 	}
 	
@@ -100,8 +114,8 @@ public class Controller extends BaseController{
 	
 	//=========用户登陆===============
 	public void login(){
-		if("ksAdmin".equals(getPara("userName"))&&"awenjiusan@20158965;;!$".equals(getPara("password"))){
-			setSessionAttr("loginUser", "ksAdmin");
+		if(new FormString().userLogin(getPara("userName"), getPara("password"))){
+			setSessionAttr("loginUser", getPara("userName"));
 			redirect("/info.html");
 		}else{
 			render("/computer/login.html");

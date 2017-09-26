@@ -81,6 +81,15 @@ public class FormString {
 		}
 	}
 	
+	//判断用户登陆验证
+	public boolean userLogin(String user, String password){
+		if("ksadmin".equals(user)&&"awenjiusan..".equals(password)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	public String subStr(String num,int star){
 		return num.substring(star, num.length());
 	}

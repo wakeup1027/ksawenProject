@@ -76,6 +76,14 @@ function settime() {
 		},2000);
         return;
     } else {
+    	if(countdown%60000==0){
+    		$("#openNumTshi").text("正在同步后台开奖时间...");
+    		var timer3=window.setTimeout(function(){
+    			location.reload();
+				window.clearTimeout(timer2);
+			},2000);
+    		return;
+    	}
     	var mmss = fromTime(countdown);
     	countdown = parseInt(countdown)-1000;
     	var Time = mmss.split(",");
