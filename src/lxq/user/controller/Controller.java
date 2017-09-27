@@ -15,6 +15,7 @@ import com.bean.TaskTimerBean;
 import com.bean.TimeLong;
 import com.config.ControllerBind;
 import com.jfinal.aop.Before;
+import com.jfinal.plugin.activerecord.Db;
 
 import demo.UserInterceptor;
 
@@ -176,6 +177,14 @@ public class Controller extends BaseController {
 		}else{
 			json.put("state", "error");
 		}
+		renderJson(json.toJSONString());
+	}
+	
+	//Çå¿Õ¿ª½±¼ÇÂ¼
+	public void cleatLogNum(){
+		Db.update("DELETE FROM lottery_log");
+		JSONObject json = new JSONObject();
+		json.put("state", "success");
 		renderJson(json.toJSONString());
 	}
 	

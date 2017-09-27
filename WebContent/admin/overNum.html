@@ -12,6 +12,7 @@
 </head>
 <body>
 <div onclick="addNum()" style="padding:10px 35px; border:none; cursor:pointer; outline:none; background:#3C6CC7; border-radius:5px; color:#fff; float:left;">添加开奖记录</div>
+<div onclick="cleatLogNum()" style="padding:10px 35px; border:none; cursor:pointer; outline:none; background:#ff0000; border-radius:5px; color:#fff; float:left; margin-left:100px;">清空数据</div>
 <div style="clear:both;"></div>
 <table class="taclass" border="0" cellpadding="5" cellspacing="0" style="background:#ccc; margin-top:15px; width:600px; border-left:1px solid #e1e1e1;">
 	<tr>
@@ -194,6 +195,26 @@ function delthis(num){
 					location.reload();
 				}else{
 					alert(res.msg);
+				}
+			},error:function(){
+				alert("请求错误！");
+			}
+		});
+    }else{
+   		window.location.reload()
+    }
+}
+
+function cleatLogNum(){
+	var r=confirm("确定要清空这些记录吗？")
+  	if (r==true){
+    	$.ajax({
+			url:"${BASE_PATH}info/cleatLogNum",
+			type:"POST",
+			dataType:"json",
+			success: function(res) {
+				if(res.state=="success"){
+					location.reload();
 				}
 			},error:function(){
 				alert("请求错误！");
