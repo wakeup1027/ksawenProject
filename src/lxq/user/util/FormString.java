@@ -8,21 +8,87 @@ import java.util.Random;
  *
  */
 public class FormString {
-	private static final String[] StrNum= {"1","2","3","4","5","6"};
-	
+	private static final String[] StrNum= {"1","2","3","4","5","6"};//随机开奖
+	/*private static final String[] Small = {"111","112","113","114","115","116","122","123","124","125","126","133","134","135","136","144","145","222","223","224","225","226","233","234","235","244","333","334"};
+	private static final String[] Bigger ={"146","155","156","166","236","245","246","255","256","266","335","336","344","345","346","355","356","366","444","445","446","455","456","466","555","556","566","666"};
+	private static final String[] Single ={"112","114","116","122","124","126","134","136","144","222","224","226","234","244","334","146","156","166","236","246","256","266","336","344","346","356","366","444","446","456","466","556","566","666"};
+	private static final String[] Double ={"111","113","115","123","125","133","135","145","223","225","233","235","333","155","245","255","335","345","355","445","455","555"};*/
 	//获取第一个数
 	public String firstNum(String Num){
-		return Num.substring(0,1);
+		String strN = "";
+		switch (Num.substring(0,1)) {
+			case "1":
+				strN = "0";
+				break;
+			case "2":
+				strN = "-42";
+				break;
+			case "3":
+				strN = "-84";
+				break;
+			case "4":
+				strN = "-126";
+				break;
+			case "5":
+				strN = "-168";
+				break;
+			case "6":
+				strN = "-210";
+				break;
+		}
+		return strN;
 	}
 	
 	//获取第二位数
 	public String secondNum(String Num){
-		return Num.substring(1,2);
+		String strN = "";
+		switch (Num.substring(1,2)) {
+			case "1":
+				strN = "0";
+				break;
+			case "2":
+				strN = "-42";
+				break;
+			case "3":
+				strN = "-84";
+				break;
+			case "4":
+				strN = "-126";
+				break;
+			case "5":
+				strN = "-168";
+				break;
+			case "6":
+				strN = "-210";
+				break;
+		}
+		return strN;
 	}
 	
 	//获取第三位数
 	public String threeNum(String Num){
-		return Num.substring(2,3);
+		String strN = "";
+		switch (Num.substring(2,3)) {
+			case "1":
+				strN = "0";
+				break;
+			case "2":
+				strN = "-42";
+				break;
+			case "3":
+				strN = "-84";
+				break;
+			case "4":
+				strN = "-126";
+				break;
+			case "5":
+				strN = "-168";
+				break;
+			case "6":
+				strN = "-210";
+				break;
+		}
+		return strN;
 	}
 	
 	//求大小
@@ -60,12 +126,27 @@ public class FormString {
 	//随机获取1~6的三位数
 	public String getThreeNum(){
 		Random random = new Random();
-		String code = new String();
+		int[] arr1 = new int[3];
 		for(int i=0; i<3; i++){
 			int index = random.nextInt(5);
-			code += StrNum[index+1];
+			arr1[i]=Integer.parseInt(StrNum[index+1]);
 		}
-		return code;
+		return Paixu(arr1);
+	}
+	
+	public String Paixu(int[] num){
+		int temp = 0;
+        int size = num.length;
+        for(int i = 0 ; i < size-1; i ++){
+        	for(int j = 0 ;j < size-1-i ; j++){
+        		if(num[j] > num[j+1]){  //交换两数位置
+        			temp = num[j];
+        			num[j] = num[j+1];
+        			num[j+1] = temp;
+        		}
+        	}
+        }
+        return String.valueOf(num[0])+String.valueOf(num[1])+String.valueOf(num[2]);
 	}
 	
 	//补位，如果位数不足的时候用0来填上
@@ -98,7 +179,4 @@ public class FormString {
 		  System.out.println(new FormString().formNum(144,110));
 	}
 	
-	private class Invalid{  
-        
-    }
 }

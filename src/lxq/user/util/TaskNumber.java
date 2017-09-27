@@ -68,8 +68,4 @@ public class TaskNumber extends BaseController{
 		
 	}
 	
-	private class Invalid{  
-        
-    }
-	
 }

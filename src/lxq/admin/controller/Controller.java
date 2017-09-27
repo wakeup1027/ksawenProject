@@ -35,9 +35,9 @@ public class Controller extends BaseController{
 		FormString fstring = new FormString();
 		if(null==Llog){
 			Llog = new LotteryLog();
-			Llog.put("firstNum", 7);
-			Llog.put("secondNum", 8);
-			Llog.put("threeNum", 9);
+			Llog.put("firstNum", 0);
+			Llog.put("secondNum", 0);
+			Llog.put("threeNum", 0);
 			setAttr("Llog",Llog);
 		}else{
 			Llog.put("firstNum", fstring.firstNum(Llog.getInt("Num")+""));
@@ -74,7 +74,7 @@ public class Controller extends BaseController{
 	
 	public void overres(){
 		FormString fstring = new FormString();
-		List<LotteryLog> Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 85");
+		List<LotteryLog> Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 1500");
 		List<LotteryLog> chList = new ArrayList<LotteryLog>();
 		for(LotteryLog chLlog : Llog){
 			LotteryLog lolog = new LotteryLog();
@@ -127,7 +127,4 @@ public class Controller extends BaseController{
 		render("/computer/login.html");
 	}
 	
-	private class Invalid{
-        
-    }
 }

@@ -126,8 +126,4 @@ public class TaskTimer extends BaseController{
 		
 	}
 	
-	private class Invalid{  
-        
-    }
-	
 }
