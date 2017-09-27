@@ -2,6 +2,8 @@ package lxq.user.controller;
 
 import java.util.List;
 
+import lxq.user.util.DateUtil;
+import lxq.user.util.FormString;
 import lxq.user.util.TaskNumber;
 import lxq.user.util.TaskTimer;
 
@@ -214,8 +216,37 @@ public class Controller extends BaseController {
 		renderJson(json.toJSONString());
 	}
 	
-	private class Invalid{  
-        
-    }
+	//一键录入号码
+	public void iptAutoNum(){
+		DateUtil DU = new DateUtil();
+		FormString fs = new FormString();
+		String datePoin = getPara("dateStr");
+		datePoin = datePoin.substring(0, 9);
+		String dateStr = getPara("dateStr");
+		int timeNum = getParaToInt("timeNum");
+		int forNum = getParaToInt("forNum");
+		for(int i=1; i<=forNum; i++){
+			String creantime = DU.getTime(dateStr, timeNum);
+			LotteryLog lott = new LotteryLog();
+			lott.set("creantime", creantime);
+			lott.set("qiNum",datePoin.replaceAll("-","")+fs.formNum(forNum, i));
+			lott.set("Num", fs.getThreeNum());
+			lott.save();
+			dateStr = creantime;
+		}
+		JSONObject json = new JSONObject();
+		json.put("state", "success");
+		renderJson(json.toJSONString());
+	}
+	
+	//修改创建时间
+	public void createUpNum(){
+		LotteryLog lo = LotteryLog.dao.findById(getParaToInt("id"));
+		lo.set("creantime", getPara("creantime"));
+		lo.update();
+		JSONObject json = new JSONObject();
+		json.put("state", "success");
+		renderJson(json.toJSONString());
+	}
 	
 }
