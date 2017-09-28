@@ -35,7 +35,8 @@ public class BaseController extends Controller{
 		return DateUtils.getNow(DateUtils.DEFAULT_REGEX_YYYYMMDD);
 	}
 	
-	private class Invalid{  
-        
-    }
+	protected String getYear() {
+		return DateUtils.getNow(DateUtils.YEARONLY);
+	}
+	
 }

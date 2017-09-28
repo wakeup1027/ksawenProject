@@ -128,8 +128,8 @@ public class FormString {
 		Random random = new Random();
 		int[] arr1 = new int[3];
 		for(int i=0; i<3; i++){
-			int index = random.nextInt(5);
-			arr1[i]=Integer.parseInt(StrNum[index+1]);
+			int index = random.nextInt(6);
+			arr1[i]=Integer.parseInt(StrNum[index]);
 		}
 		return Paixu(arr1);
 	}
@@ -150,16 +150,13 @@ public class FormString {
 	}
 	
 	//补位，如果位数不足的时候用0来填上
-	public String formNum(int oneday, int nowday){
-		String stroneday = String.valueOf(oneday);
+	public String formNum(int nowday){
 		String strnowday = String.valueOf(nowday);
-		if(stroneday.length()-strnowday.length()==2){
-			return "00"+strnowday;
-		}else if(stroneday.length()-strnowday.length()==1){
-			return "0"+strnowday;
-		}else{
-			return strnowday;
+		String zero = "";
+		for(int i=0; i<(5-strnowday.length()); i++){
+			zero+="0";
 		}
+		return zero+strnowday;
 	}
 	
 	//判断用户登陆验证
@@ -176,7 +173,7 @@ public class FormString {
 	}
 	
 	public static void main(String[] args) { 
-		  System.out.println(new FormString().formNum(144,110));
+		  System.out.println(new FormString().formNum(10000));
 	}
 	
 }

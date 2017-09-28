@@ -7,7 +7,6 @@ import lxq.user.util.FormString;
 
 import com.base.BaseController;
 import com.bean.LotteryLog;
-import com.bean.OpenNum;
 import com.bean.TaskTimerBean;
 import com.bean.TimeNumOver;
 import com.config.ControllerBind;
@@ -46,9 +45,9 @@ public class Controller extends BaseController{
 			setAttr("Llog",Llog);
 		}
 		//获取每日开奖的期数
-		OpenNum ON = OpenNum.dao.findById(1);
-		ON.put("nextTime",getYearMd()+fstring.formNum(ON.getInt("openNum"),ON.getInt("nowNum")));
-		setAttr("ON",ON);
+		/*OpenNum ON = OpenNum.dao.findById(1);
+		ON.put("nextTime",getYearMd());//+fstring.formNum(ON.getInt("openNum"),ON.getInt("nowNum"))
+		setAttr("ON",ON);*/
 		renderAuto("/home.html");
 	}
 	
@@ -74,7 +73,7 @@ public class Controller extends BaseController{
 	
 	public void overres(){
 		FormString fstring = new FormString();
-		List<LotteryLog> Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 1500");
+		List<LotteryLog> Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 950");
 		List<LotteryLog> chList = new ArrayList<LotteryLog>();
 		for(LotteryLog chLlog : Llog){
 			LotteryLog lolog = new LotteryLog();

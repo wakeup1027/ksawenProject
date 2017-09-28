@@ -8,8 +8,4 @@ public class OpenNum extends Model<OpenNum> {
 	private static final long serialVersionUID = 1L;
 	public static final OpenNum dao = new OpenNum();
 	
-	private class Invalid{  
-        
-    }
-	
 }

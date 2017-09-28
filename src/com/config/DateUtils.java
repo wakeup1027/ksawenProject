@@ -44,6 +44,10 @@ public class DateUtils {
 	 */
 	public static final String DEFAULT_REGEX_YYYYMMDD = "yyyyMMdd";
 	/**
+	 * onlyYear
+	 */
+	public static final String YEARONLY = "yyyy";
+	/**
 	 * 默认的日期格�? .
 	 */
 	public static final String DEFAULT_REGEX_YYYY_MM_DD_HH_MIN_SS = "yyyy-MM-dd HH:mm:ss";
@@ -232,10 +236,6 @@ public class DateUtils {
 		return format(ca.getTime(), "yyyy-MM-dd HH:mm:ss");
 	}
 	
-	private class Invalid{  
-        
-    }
-
 }
 
 class EPNDateFormat {

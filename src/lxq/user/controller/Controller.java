@@ -117,7 +117,7 @@ public class Controller extends BaseController {
 	
 	//===============Ò»¿ª½±µÄºÅÂë===============
 	public void getoverList(){
-		List<LotteryLog> list = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC");
+		List<LotteryLog> list = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 1000");
 		setAttr("dateList",list);
 		render("/admin/overNum.html");
 	}
@@ -220,18 +220,19 @@ public class Controller extends BaseController {
 	public void iptAutoNum(){
 		DateUtil DU = new DateUtil();
 		FormString fs = new FormString();
-		String datePoin = getPara("dateStr");
-		datePoin = datePoin.substring(0, 9);
 		String dateStr = getPara("dateStr");
 		int timeNum = getParaToInt("timeNum");
 		int forNum = getParaToInt("forNum");
 		for(int i=1; i<=forNum; i++){
+			OpenNum openn = OpenNum.dao.findById(1);
 			String creantime = DU.getTime(dateStr, timeNum);
 			LotteryLog lott = new LotteryLog();
 			lott.set("creantime", creantime);
-			lott.set("qiNum",datePoin.replaceAll("-","")+fs.formNum(forNum, i));
+			lott.set("qiNum",creantime.substring(0, 4)+new FormString().formNum(openn.getInt("nowNum")));
 			lott.set("Num", fs.getThreeNum());
 			lott.save();
+			openn.set("nowNum", openn.getInt("nowNum")+1);
+			openn.update();
 			dateStr = creantime;
 		}
 		JSONObject json = new JSONObject();
