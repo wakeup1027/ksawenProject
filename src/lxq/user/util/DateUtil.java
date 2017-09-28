@@ -18,7 +18,7 @@ public class DateUtil {
 		  
 		Calendar nowTime = Calendar.getInstance();
 		nowTime.setTime(now);
-		nowTime.add(Calendar.MINUTE, 10);
+		nowTime.add(Calendar.MINUTE, time);
 		return sdf.format(nowTime.getTime());
 	}
 	

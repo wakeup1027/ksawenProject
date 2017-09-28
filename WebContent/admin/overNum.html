@@ -337,7 +337,7 @@ function delthis(num){
 }
 
 function cleatLogNum(){
-	var r=confirm("确定要清空这些记录吗？")
+	var r=confirm("确定要清空这些记录吗？注意：期号也会重新从1开始计算")
   	if (r==true){
     	$.ajax({
 			url:"${BASE_PATH}info/cleatLogNum",

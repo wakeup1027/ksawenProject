@@ -184,7 +184,11 @@ public class Controller extends BaseController {
 	
 	//Çå¿Õ¿ª½±¼ÇÂ¼
 	public void cleatLogNum(){
-		Db.update("DELETE FROM lottery_log");
+		Db.update("TRUNCATE TABLE lottery_log");
+		OpenNum nup = OpenNum.dao.findById(1);
+		nup.set("nowNum", 1);
+		nup.update();
+		
 		JSONObject json = new JSONObject();
 		json.put("state", "success");
 		renderJson(json.toJSONString());

@@ -26,8 +26,8 @@ table td{border-right:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; height
 	<% for(item in dateList){if(i<33){%>
 	<tr>
 	  <td>
-	  	<div style="color:#999; font-size:16px;line-height:30px;">${strutil.subStr(item.qiNum,8)}期</div>
-	  	<div style="line-height:30px;">${strutil.subStr(item.creantime,11)}</div>
+	  	<div style="color:#999; font-size:16px;line-height:30px;">${strutil.subStr(item.qiNum)}期</div>
+	  	<div style="line-height:30px;">${strutil.subStrTwo(item.creantime,11)}</div>
 	  </td>
       <td>
 	  		<div style="margin:0px auto; width:110px; margin-top:10px;">
@@ -67,7 +67,7 @@ $(function(){
 			$(".cepingUl").html("");
 			for(var j=(e.current-1)*coutPage; j<e.current*coutPage; j++){
 				if(j<date.length){
-					var td = '<tr><td><div style="color:#999; font-size:16px;line-height:30px;">'+subStr(date[j].qiNum,8)+'期</div><div style="line-height:30px;">'+subStr(date[j].creantime,11)+'</div></td><td><div style="margin:0px auto; width:110px; margin-top:10px;"><div class="numStrClass" style="background-position: '+date[j].firstNum+'px center;"></div><div class="numStrClass" style="background-position: '+date[j].secondNum+'px center; margin-left:5px;"></div><div class="numStrClass" style="background-position: '+date[j].threeNum+'px center; margin-left:5px;"></div><div style="clear:both;"></div></div><div style="width: 110px; margin: 0 auto; text-align:center;"><div style="float:left; width:32px; line-height:32px;">'+date[j].allNum+'</div><div style="float:left; width:32px; line-height:32px; margin-left:5px;">'+date[j].bigorsam+'</div><div style="float:left; width:32px; line-height:32px; margin-left:5px;">'+date[j].onlyAll+'</div><div style="clear:both;"></div></div></td></tr>';
+					var td = '<tr><td><div style="color:#999; font-size:16px;line-height:30px;">'+subStr(date[j].qiNum)+'期</div><div style="line-height:30px;">'+subStrTwo(date[j].creantime,11)+'</div></td><td><div style="margin:0px auto; width:110px; margin-top:10px;"><div class="numStrClass" style="background-position: '+date[j].firstNum+'px center;"></div><div class="numStrClass" style="background-position: '+date[j].secondNum+'px center; margin-left:5px;"></div><div class="numStrClass" style="background-position: '+date[j].threeNum+'px center; margin-left:5px;"></div><div style="clear:both;"></div></div><div style="width: 110px; margin: 0 auto; text-align:center;"><div style="float:left; width:32px; line-height:32px;">'+date[j].allNum+'</div><div style="float:left; width:32px; line-height:32px; margin-left:5px;">'+date[j].bigorsam+'</div><div style="float:left; width:32px; line-height:32px; margin-left:5px;">'+date[j].onlyAll+'</div><div style="clear:both;"></div></div></td></tr>';
 					$(".cepingUl").append(td);
 				}
 			}
@@ -88,7 +88,13 @@ function FormJson(qiNum,creantime,firstNum,secondNum,threeNum,allNum,bigorsam,on
 		return jsonFrom;
 }
 
-function subStr(num,star){
+function subStr(num){
+	var numStr = num.substring(4, num.length);
+	var numInt = parseInt(numStr);
+	return numInt;
+}
+
+function subStrTwo(num,star){
 	return num.substring(star, num.length);
 }
 </script>

@@ -168,7 +168,13 @@ public class FormString {
 		}
 	}
 	
-	public String subStr(String num,int star){
+	public int subStr(String num){
+		String numStr = num.substring(4, num.length());
+		int numInt = Integer.parseInt(numStr);
+		return numInt;
+	}
+	
+	public String subStrTwo(String num,int star){
 		return num.substring(star, num.length());
 	}
 	
