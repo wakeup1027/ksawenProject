@@ -57,8 +57,9 @@
 <script>
 var countdown=${tlong};
 document.addEventListener("visibilitychange", function(){
-    document.title = document.hidden ? "结果总界面" : location.reload();
+    document.hidden ? "结果总界面" : location.reload();
 });
+
 sendemail();
 //console.log(countdown);
 function sendemail(){
@@ -92,6 +93,20 @@ function settime() {
     } 
 	setTimeout(function() {settime();},1000) 
 }
+
+/*function getCounttime(){
+	$.ajax({
+			url:"${BASE_PATH}getHeaTime",
+			type:"POST",
+			dataType:"json",
+			success: function(res) {
+				console.log(res);
+				countdown = res.val;
+			},error:function(){
+				alert("系统繁忙，时间同步失败！");
+			}
+	});
+}*/
 
 //把毫秒化成分和秒
 function fromTime(timeNum){

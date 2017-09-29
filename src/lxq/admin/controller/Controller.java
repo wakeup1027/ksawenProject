@@ -5,6 +5,7 @@ import java.util.List;
 
 import lxq.user.util.FormString;
 
+import com.alibaba.fastjson.JSONObject;
 import com.base.BaseController;
 import com.bean.LotteryLog;
 import com.bean.TaskTimerBean;
@@ -120,6 +121,20 @@ public class Controller extends BaseController{
 			render("/computer/login.html");
 		}
 	}
+	
+	//同步后台时间
+	/*public void getHeaTime(){
+		JSONObject json = new JSONObject();
+		TaskTimerBean tast = TaskTimerBean.dao.findById(1);
+		if(tast.getInt("status")==0){
+			json.put("val", -1);
+		}else{
+			TimeNumOver tlong = TimeNumOver.dao.findById(1);
+			int timeNum = tlong.getInt("number");
+			json.put("val", timeNum*1000);
+		}
+		renderJson(json.toJSONString());
+	}*/
 	
 	public void loginout(){
 		removeSessionAttr("loginUser");

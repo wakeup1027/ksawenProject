@@ -33,6 +33,13 @@ public class Controller extends BaseController {
 	//=======设置时长=======
 	public void LongTime(){
 		JSONObject json = new JSONObject();
+		TaskTimerBean tast = TaskTimerBean.dao.findById(1);
+		if(tast.getInt("status")==1){
+			json.put("state", "error");
+			json.put("msg", "修改失败！请停止开奖器再修改开奖时间！");
+			renderJson(json.toJSONString());
+			return;
+		}
 		TimeLong tlong = TimeLong.dao.findById(4);
 		tlong.set("timelong", getParaToInt("time"));
 		boolean tl = tlong.update();
