@@ -14,7 +14,7 @@ import com.jfinal.aop.Clear;
 
 import demo.UserInterceptor;
 
-@ControllerBind(controllerKey = "/home")
+@ControllerBind(controllerKey = "/")
 @Clear(UserInterceptor.class)
 public class Controller extends BaseController{
 	

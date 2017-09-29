@@ -100,6 +100,9 @@ public class TaskTimer extends BaseController{
 					}
 					if(llog.save()){
 						nowNum.delete();
+						on.set("nowNum", on.getInt("nowNum")+1);
+						//on.set("spareNum", on.getInt("spareNum")-1);
+						on.update();
 					}
 				}
 			/*}else{
