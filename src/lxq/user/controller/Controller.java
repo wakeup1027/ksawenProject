@@ -5,7 +5,7 @@ import java.util.List;
 import lxq.user.util.DateUtil;
 import lxq.user.util.FormString;
 import lxq.user.util.TaskNumber;
-import lxq.user.util.TaskTimer;
+import lxq.user.util.Tiemer;
 
 import com.alibaba.fastjson.JSONObject;
 import com.base.BaseController;
@@ -131,8 +131,9 @@ public class Controller extends BaseController {
 	
 	//========启动开奖器========
 	public void start(){
-		TimeLong tlong = TimeLong.dao.findById(4);
-		new TaskTimer().startTask(tlong.getInt("timelong"));//这个定时器是开奖定时器
+		//TimeLong tlong = TimeLong.dao.findById(4);
+		//new TaskTimer().startTask(tlong.getInt("timelong"));//这个定时器是开奖定时器
+		Tiemer.timer1();
 		new TaskNumber().startTask();//这个定时器是同步前后端的倒计时定时器
 		JSONObject json = new JSONObject();
 		json.put("state", true);
@@ -142,8 +143,8 @@ public class Controller extends BaseController {
 	public void stop(){
 		System.out.println("我执行结束开奖器的功能");
 		JSONObject json = new JSONObject();
-		json.put("state", new TaskTimer().stopTimer());
-		new TaskNumber().stopTimer(); //把倒计时也重置一下
+		json.put("state", Tiemer.StopTiemer());
+		Tiemer.StopTiemer(); //把倒计时也重置一下
 		renderJson(json.toJSONString());
 	}
 	

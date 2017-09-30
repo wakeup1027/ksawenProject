@@ -125,7 +125,4 @@ public class AutoBindModels {
 		this.includeJars = includeJars;
 	}
 	
-	private class Invalid{  
-        
-    }
 }

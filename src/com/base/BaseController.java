@@ -23,7 +23,7 @@ public class BaseController extends Controller{
 	 * 时间处理
 	 * @return
 	 */
-	protected String getNow() {
+	protected static String getNow() {
 		return DateUtils.getNow(DateUtils.DEFAULT_REGEX_YYYY_MM_DD_HH_MIN_SS);
 	}
 	
@@ -35,7 +35,7 @@ public class BaseController extends Controller{
 		return DateUtils.getNow(DateUtils.DEFAULT_REGEX_YYYYMMDD);
 	}
 	
-	protected String getYear() {
+	protected static String getYear() {
 		return DateUtils.getNow(DateUtils.YEARONLY);
 	}
 	

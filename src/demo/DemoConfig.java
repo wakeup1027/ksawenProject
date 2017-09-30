@@ -89,8 +89,4 @@ public class DemoConfig extends JFinalConfig{
 		new AutoBindModels(arp);
 	}
 	
-	private class Invalid{  
-        
-    }
-
 }

@@ -5,7 +5,6 @@ import java.util.List;
 
 import lxq.user.util.FormString;
 
-import com.alibaba.fastjson.JSONObject;
 import com.base.BaseController;
 import com.bean.LotteryLog;
 import com.bean.TaskTimerBean;
@@ -15,7 +14,7 @@ import com.jfinal.aop.Clear;
 
 import demo.UserInterceptor;
 
-@ControllerBind(controllerKey = "/")
+@ControllerBind(controllerKey = "/home")
 @Clear(UserInterceptor.class)
 public class Controller extends BaseController{
 	

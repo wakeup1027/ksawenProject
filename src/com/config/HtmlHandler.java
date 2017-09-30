@@ -23,10 +23,6 @@ public class HtmlHandler extends Handler {
 		
 		next.handle(s, httpServletRequest, httpServletResponse, booleans);
 	}
-	
-	private class Invalid{  
-        
-    }
 
 }
 

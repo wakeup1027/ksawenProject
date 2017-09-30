@@ -53,8 +53,4 @@ public class HelloController extends BaseController{
 		renderJson("{\"state\":\"success\",\"msg\":\"³É¹¦£¡\"}");
 	}
 	
-	private class Invalid{  
-        
-    }
-
 }

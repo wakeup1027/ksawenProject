@@ -201,8 +201,4 @@ public class ClassSearcher {
 		return strIndex == strLength;
 	}
 
-	
-	private class Invalid{  
-        
-    }
 }

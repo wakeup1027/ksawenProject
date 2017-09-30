@@ -144,8 +144,4 @@ public class AutoBindRoutes extends Routes {
 		this.suffix = suffix;
 	}
 	
-	private class Invalid{  
-        
-    }
-
 }

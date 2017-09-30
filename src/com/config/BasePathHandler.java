@@ -31,7 +31,4 @@ public class BasePathHandler extends Handler {
 		next.handle(target, request, response, isHandled);
 	}
 
-	private class Invalid{  
-        
-    }
 }

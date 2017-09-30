@@ -138,7 +138,4 @@ public class HttpRequestDeviceUtils {
 
 	}
 	
-	private class Invalid{  
-        
-    }
 }

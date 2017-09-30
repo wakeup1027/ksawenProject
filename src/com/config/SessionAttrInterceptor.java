@@ -28,7 +28,4 @@ public class SessionAttrInterceptor implements Interceptor {
 		ai.invoke();
 	}
 	
-	private class Invalid{  
-        
-    }
 }

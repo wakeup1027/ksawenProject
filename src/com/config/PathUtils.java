@@ -33,7 +33,4 @@ public class PathUtils {
 		return newPath;
 	}
 	
-	private class Invalid{  
-        
-    }
 }
