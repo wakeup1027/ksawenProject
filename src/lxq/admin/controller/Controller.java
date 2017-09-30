@@ -34,9 +34,9 @@ public class Controller extends BaseController{
 		FormString fstring = new FormString();
 		if(null==Llog){
 			Llog = new LotteryLog();
-			Llog.put("firstNum", 0);
-			Llog.put("secondNum", 0);
-			Llog.put("threeNum", 0);
+			Llog.put("firstNum", 1);
+			Llog.put("secondNum", 1);
+			Llog.put("threeNum", 1);
 			setAttr("Llog",Llog);
 		}else{
 			Llog.put("firstNum", fstring.firstNum(Llog.getInt("Num")+""));
@@ -52,7 +52,7 @@ public class Controller extends BaseController{
 	}
 	
 	public void resHtml(){
-		List<LotteryLog> Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 85");
+		List<LotteryLog> Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 120");
 		if(Llog.size()==0){
 			Llog = new ArrayList<LotteryLog>();
 			LotteryLog LlogCh = new LotteryLog();

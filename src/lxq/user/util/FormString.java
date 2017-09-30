@@ -15,80 +15,17 @@ public class FormString {
 	private static final String[] Double ={"111","113","115","123","125","133","135","145","223","225","233","235","333","155","245","255","335","345","355","445","455","555"};*/
 	//获取第一个数
 	public String firstNum(String Num){
-		String strN = "";
-		switch (Num.substring(0,1)) {
-			case "1":
-				strN = "0";
-				break;
-			case "2":
-				strN = "-42";
-				break;
-			case "3":
-				strN = "-84";
-				break;
-			case "4":
-				strN = "-126";
-				break;
-			case "5":
-				strN = "-168";
-				break;
-			case "6":
-				strN = "-210";
-				break;
-		}
-		return strN;
+		return Num.substring(0,1);
 	}
 	
 	//获取第二位数
 	public String secondNum(String Num){
-		String strN = "";
-		switch (Num.substring(1,2)) {
-			case "1":
-				strN = "0";
-				break;
-			case "2":
-				strN = "-42";
-				break;
-			case "3":
-				strN = "-84";
-				break;
-			case "4":
-				strN = "-126";
-				break;
-			case "5":
-				strN = "-168";
-				break;
-			case "6":
-				strN = "-210";
-				break;
-		}
-		return strN;
+		return Num.substring(1,2);
 	}
 	
 	//获取第三位数
 	public String threeNum(String Num){
-		String strN = "";
-		switch (Num.substring(2,3)) {
-			case "1":
-				strN = "0";
-				break;
-			case "2":
-				strN = "-42";
-				break;
-			case "3":
-				strN = "-84";
-				break;
-			case "4":
-				strN = "-126";
-				break;
-			case "5":
-				strN = "-168";
-				break;
-			case "6":
-				strN = "-210";
-				break;
-		}
-		return strN;
+		return Num.substring(2,3);
 	}
 	
 	//求大小

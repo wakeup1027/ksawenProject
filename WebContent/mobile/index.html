@@ -1,8 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>走势图</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 <script src="${BASE_PATH}js/jquery.js"></script>
 <style>
 body{font-size:13px;}
@@ -10,61 +11,19 @@ body{font-size:13px;}
 #zoushiPuture td{border-top:1px solid #f1f1f1;border-left:1px solid #f1f1f1; height:30px;}
 
 button{margin-left:15px; cursor:pointer;}
-.numStrClass{float:left; width:32px; height:32px; background: url(../images/flbks2.png) left center no-repeat;}
 </style>
 </head>
 
 <body style="background:#FAFAFA;">
-<div style="height:106px; margin:20px auto;">
-	<div style="float:left; width:80px; height:80px; overflow:hidden; border-radius:40px;">
-		<img src="${BASE_PATH}images/feilvbin.png" style="width:80px; height:80px;"/>
-	</div>
-	<div style="float:left; width:476px; margin-left:20px;">
-		<div style="font-size:13px; color:#333;">
-			<p style="float:left; padding:0px; margin:0px;">菲律宾快3第<span style="font-weight: 700; color: #e73f3f;">${Llog.qiNum}</span>期开奖号码</p>
-			<div style="clear:both;"></div>
-		</div>
-		<div style="border:1px solid #e5e5e5;  padding: 13px 0 13px 13px;  background: #fff;  border-radius: 3px;  overflow: hidden; margin-top: 13px;">
-			<div class="numStrClass" style="float:left; background-position: ${Llog.firstNum}px center;"></div>
-			<div class="numStrClass" style="float:left; background-position: ${Llog.secondNum}px center; margin-left:5px;"></div>
-			<div class="numStrClass" style="float:left; background-position: ${Llog.threeNum}px center; margin-left:5px;"></div>
-			<div style="clear:both;"></div>
-		</div>
-	</div>
-	<div style="clear:both;"></div>
-</div>
-<div style="margin:20px auto 10px auto; padding-top:20px; border-top: 1px solid #e5e5e5;">
-	<a href="${BASE_PATH}home.html" target="_self" style="float: left; height: 33px; line-height: 33px; color:#666; text-decoration:none; padding: 0 16px; border-radius: 3px; border: 1px solid #e5e5e5; margin-right: 10px; background: #fff;">历史开奖</a>
-	<a href="${BASE_PATH}home/resHtml.html" target="_self" style="float: left; height: 33px; line-height: 33px; padding: 0 16px; color:#666; text-decoration:none; border-radius: 3px; border: 1px solid #e5e5e5; margin-right: 10px; background: #fff;">开奖走势</a>
-	<div style="clear:both;"></div>
-</div>
 <div id="zoushiBox" style="width: 940px;margin:0px auto; margin-top:15px; display:block;">
 <table class="titleTable" height="61" border="0" cellpadding="0" cellspacing="0" style="text-align:center; border-right:1px solid #f1f1f1;">
   <tr>
-    <td style="width:100px;" rowspan="2" scope="col">期号</td>
+    <td style="width:60px;" rowspan="2" scope="col">期号</td>
     <td style="width:116px;" colspan="3" rowspan="2" scope="col">开奖号码</td>
-    <!--<th colspan="6" scope="col">开奖号码公布</td>-->
-    <td colspan="16" scope="col">和值</td>
     <td colspan="2" scope="col">大小</td>
     <td colspan="2" scope="col">单双</td>
   </tr>
   <tr>
-    <td style="width:35px">03</td>
-    <td style="width:35px">04</td>
-    <td style="width:35px">05</td>
-    <td style="width:35px">06</td>
-    <td style="width:35px">07</td>
-    <td style="width:35px">08</td>
-    <td style="width:35px">09</td>
-    <td style="width:35px">10</td>
-    <td style="width:35px">11</td>
-    <td style="width:35px">12</td>
-    <td style="width:35px">13</td>
-    <td style="width:35px">14</td>
-    <td style="width:35px">15</td>
-    <td style="width:35px">16</td>
-    <td style="width:35px">17</td>
-    <td style="width:35px">18</td>
     <td style="width:35px">大</td>
     <td style="width:35px">小</td>
     <td style="width:35px">单</td>
@@ -92,13 +51,10 @@ for(var j=0;j<date.length;j++){
 	var firstNum = chdate.substring(0,1);
 	var secondNum = chdate.substring(1,2);
 	var threeNum = chdate.substring(2,3);
-	$("#zoushiPuture").append('<tr><td style="width:100px;">'+date[j].qiNum+'</td><td style="width:38px; background:#FFFFEE;">'+firstNum+'</td><td style="width:38px; background:#FFFFEE;">'+secondNum+'</td><td style="width:38px; background:#FFFFEE;">'+threeNum+'</td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td></tr>');
+	$("#zoushiPuture").append('<tr><td style="width:60px;">'+subStr(date[j].qiNum)+'期</td><td style="width:38px; background:#FFFFEE;">'+firstNum+'</td><td style="width:38px; background:#FFFFEE;">'+secondNum+'</td><td style="width:38px; background:#FFFFEE;">'+threeNum+'</td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td></tr>');
 
 	//写开奖号码公布
     var tdArr = $("#zoushiPuture").find("tr").eq(j).find("td");
-    /*tdArr.eq(writNum(firstNum)).text(firstNum);
-    tdArr.eq(writNum(secondNum)).text(secondNum);
-	tdArr.eq(writNum(threeNum)).text(threeNum);*/
 	
 	//写和值
 	var allRes = parseInt(firstNum)+parseInt(secondNum)+parseInt(threeNum);
@@ -106,11 +62,11 @@ for(var j=0;j<date.length;j++){
     tdArr.eq(writResult(allRes)).css({"background":"#3E94F1","color":"#fff"});
 	
 	//整理画和值的线的坐标
-	var helfHeight = parseInt(tdArr.eq(writResult(allRes)).height())/2;
+	/*var helfHeight = parseInt(tdArr.eq(writResult(allRes)).height())/2;
 	var helfWidth = parseInt(tdArr.eq(writResult(allRes)).width())/2;
 	var Y = parseInt(tdArr.eq(writResult(allRes)).offset().top)+helfWidth; 
 	var X = parseInt(tdArr.eq(writResult(allRes)).offset().left)+helfHeight; 
-	pointDate.push(formPointer(X,Y));
+	pointDate.push(formPointer(X,Y));*/
 	
 	//整理画(大小)的线的坐标
 	/*var bsHeight = parseInt(tdArr.eq(bigsamll(allRes)).height())/2;
@@ -128,30 +84,46 @@ for(var j=0;j<date.length;j++){
 	
 	//写大小
 	if(allRes<=10){
-		tdArr.eq(21).text("小");
-		tdArr.eq(21).css({"background":"#5CD38F","color":"#fff"});
+		tdArr.eq(5).text("小");
+		tdArr.eq(5).css({"background":"#5CD38F","color":"#fff"});
 	}else if(allRes>10){
-		tdArr.eq(20).text("大");
-		tdArr.eq(20).css({"background":"#5CD38F","color":"#fff"});
+		tdArr.eq(4).text("大");
+		tdArr.eq(4).css({"background":"#5CD38F","color":"#fff"});
 	}
 	
 	//写单双
 	if(allRes%2==0){
-		tdArr.eq(23).text("双");
-		tdArr.eq(23).css({"background":"#FF9C00","color":"#fff"});
+		tdArr.eq(7).text("双");
+		tdArr.eq(7).css({"background":"#FF9C00","color":"#fff"});
 	}else{
-		tdArr.eq(22).text("单");
-		tdArr.eq(22).css({"background":"#FF9C00","color":"#fff"});
+		tdArr.eq(6).text("单");
+		tdArr.eq(6).css({"background":"#FF9C00","color":"#fff"});
 	}
 }
 
 $(function(){
-	for(var i=1; i<pointDate.length; i++){
+	/*for(var i=1; i<pointDate.length; i++){
 		var top1 = pointDate[i-1].y;//起点的y坐标
 		var left1 = pointDate[i-1].x;//终点的x坐标
 		var top2 = pointDate[i].y;//终点的y坐标
 		var left2 = pointDate[i].x;//终点的x坐标
 		drawLine2(left1,top1,left2,top2,(i-1),1);
+	}*/
+	//console.log(bigSmallDate);
+	for(var i=1; i<bigSmallDate.length; i++){
+		var top1 = bigSmallDate[i-1].y;//起点的y坐标
+		var left1 = bigSmallDate[i-1].x;//终点的x坐标
+		var top2 = bigSmallDate[i].y;//终点的y坐标
+		var left2 = bigSmallDate[i].x;//终点的x坐标
+		drawLine2(left1,top1,left2,top2,(i-1),2);
+	}
+	
+	for(var i=1; i<signDoubleDate.length; i++){
+		var top1 = signDoubleDate[i-1].y;//起点的y坐标
+		var left1 = signDoubleDate[i-1].x;//终点的x坐标
+		var top2 = signDoubleDate[i].y;//终点的y坐标
+		var left2 = signDoubleDate[i].x;//终点的x坐标
+		drawLine2(left1,top1,left2,top2,(i-1),3);
 	}
 })
 
@@ -161,6 +133,22 @@ function formd(qiNum, Num){
 	jsond.Num = Num;
 	return jsond;
 }
+
+/*function writNum(num){
+	if(num==1||num=="1"){
+		return 4;
+	}else if(num==2||num=="2"){
+		return 5;
+	}else if(num==3||num=="3"){
+		return 6;
+	}else if(num==4||num=="4"){
+		return 7;
+	}else if(num==5||num=="5"){
+		return 8;
+	}else if(num==6||num=="6"){
+		return 9;
+	}
+}*/
 
 function bigsamll(allRes){
 	if(allRes<=10){
@@ -261,6 +249,12 @@ function drawLine2(x1,y1,x2,y2,index,objNum){
 	ctx.lineTo(starPoint2,overPoint2);
 	ctx.strokeStyle = "#3E94F1";
 	ctx.stroke();
+}
+
+function subStr(num){
+	var numStr = num.substring(4, num.length);
+	var numInt = parseInt(numStr);
+	return numInt;
 }
 </script>
 </body>
