@@ -6,6 +6,7 @@ import lxq.user.util.DateUtil;
 import lxq.user.util.FormString;
 import lxq.user.util.TaskNumber;
 import lxq.user.util.Tiemer;
+import lxq.user.util.TiemerSecond;
 
 import com.alibaba.fastjson.JSONObject;
 import com.base.BaseController;
@@ -134,7 +135,7 @@ public class Controller extends BaseController {
 		//TimeLong tlong = TimeLong.dao.findById(4);
 		//new TaskTimer().startTask(tlong.getInt("timelong"));//这个定时器是开奖定时器
 		Tiemer.timer1();
-		new TaskNumber().startTask();//这个定时器是同步前后端的倒计时定时器
+		TiemerSecond.timer1();//这个定时器是同步前后端的倒计时定时器
 		JSONObject json = new JSONObject();
 		json.put("state", true);
 		renderJson(json.toJSONString());

@@ -9,7 +9,7 @@
 <style>
 table{text-align:center;}
 table td{border-right:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; height:46px;}
-.numStrClass{float:left; width:32px; height:32px; border: 3px solid #3C6CC7;  border-radius: 34px; text-align: center;   line-height: 32px;  font-size: 25px;  color: #3C6CC7;  font-weight: 700;}
+.numStrClass{float:left; width:32px; height:32px; background: url(${BASE_PATH}images/flbks.png) left center no-repeat;}
 </style>
 </head>
 
@@ -23,23 +23,23 @@ table td{border-right:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; height
 </table>
 <table class="cepingUl" border="0" cellpadding="0" cellspacing="0" style="border-left:1px solid #e5e5e5; width:100%;">
     <% if( dateList != null && dateList.~size > 0 ){var i=0;%>
-	<% for(item in dateList){if(i<45){%>
+	<% for(item in dateList){if(i<48){%>
 	<tr>
 	  <td style="width: 109px;">
 	  	<div style="color:#999; font-size:16px;line-height:30px;">${strutil.subStr(item.qiNum)}期</div>
 	  	<div style="line-height:30px;">${strutil.subStrTwo(item.creantime,11)}</div>
 	  </td>
       <td>
-	  		<div style="margin:0px auto; width:125px; margin-top:10px;">
-				<div class="numStrClass">${item.firstNum}</div>
-				<div class="numStrClass" style="margin-left:5px;">${item.secondNum}</div>
-				<div class="numStrClass" style="margin-left:5px;">${item.threeNum}</div>
+	  		<div style="margin:0px auto; width:110px; margin-top:10px;">
+				<div class="numStrClass" style="background-position: ${item.firstNum}px center;"></div>
+				<div class="numStrClass" style="background-position: ${item.secondNum}px center; margin-left:5px;"></div>
+				<div class="numStrClass" style="background-position: ${item.threeNum}px center; margin-left:5px;"></div>
 				<div style="clear:both;"></div>
 			</div>
-			<div style="width: 125px; margin: 0 auto; text-align:center;">
-				<div style="float:left; width:38px; line-height:32px;">${item.allNum}</div>
-				<div style="float:left; width:38px; line-height:32px; margin-left:5px;">${item.bigorsam}</div>
-				<div style="float:left; width:38px; line-height:32px; margin-left:5px;">${item.onlyAll}</div>
+			<div style="width: 110px; margin: 0 auto; text-align:center;">
+				<div style="float:left; width:32px; line-height:32px;">${item.allNum}</div>
+				<div style="float:left; width:32px; line-height:32px; margin-left:5px;">${item.bigorsam}</div>
+				<div style="float:left; width:32px; line-height:32px; margin-left:5px;">${item.onlyAll}</div>
 				<div style="clear:both;"></div>
 			</div>
 	  </td>
@@ -51,7 +51,7 @@ table td{border-right:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; height
 </div>
 <script>
 var date = [];
-var coutPage=45; //一页显示的数据数
+var coutPage=48; //一页显示的数据数
 
 <% if( dateList != null && dateList.~size > 0 ){ %>
 	<% for(item in dateList){ %>

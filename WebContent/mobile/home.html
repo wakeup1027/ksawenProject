@@ -9,7 +9,7 @@
 <link rel="shortcut icon"href="${BASE_PATH}images/favicon.ico"/>
 <script src="${BASE_PATH}js/jquery.js"></script>
 <style>
-.numStrClass{float:left; width:32px; height:32px; border: 3px solid #3C6CC7;  border-radius: 34px; text-align: center;   line-height: 32px;  font-size: 25px;  color: #3C6CC7;  font-weight: 700;}
+.numStrClass{float:left; width:32px; height:32px; background: url(${BASE_PATH}images/flbks.png) left center no-repeat;}
 </style>
 </head>
 
@@ -24,9 +24,9 @@
 			<div style="clear:both;"></div>
 		</div>
 		<div style="border:1px solid #e5e5e5;  padding: 13px 0 13px 13px;  background: #fff;  border-radius: 3px;  overflow: hidden; margin-top: 13px;">
-			<div class="numStrClass">${Llog.firstNum}</div>
-			<div class="numStrClass" style="margin-left:5px;">${Llog.secondNum}</div>
-			<div class="numStrClass" style="margin-left:5px;">${Llog.threeNum}</div>
+			<div class="numStrClass" style="background-position: ${Llog.firstNum}px center;"></div>
+			<div class="numStrClass" style="background-position: ${Llog.secondNum}px center; margin-left:5px;"></div>
+			<div class="numStrClass" style="background-position: ${Llog.threeNum}px center; margin-left:5px;"></div>
 			<div style="clear:both;"></div>
 		</div>
 	</div>

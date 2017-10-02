@@ -9,7 +9,7 @@
 <style>
 table{text-align:center;}
 table td{border-right:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; height:46px;}
-.numStrClass{float:left; width:32px; height:32px; border: 3px solid #3C6CC7; border-radius: 34px; text-align: center;   line-height: 32px;  font-size: 25px;  color: #3C6CC7;  font-weight: 700;}
+.numStrClass{float:left; width:32px; height:32px; background: url(${BASE_PATH}images/flbks.png) left center no-repeat;}
 </style>
 </head>
 
@@ -29,9 +29,9 @@ table td{border-right:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; height
       <td style="width:230px;">${item.creantime}</td>
       <td style="width:415px;">
 	  		<div style="width:130px; margin:0px auto;">
-				<div class="numStrClass">${item.firstNum}</div>
-				<div class="numStrClass" style="margin-left:5px;">${item.secondNum}</div>
-				<div class="numStrClass" style="margin-left:5px;">${item.threeNum}</div>
+				<div class="numStrClass" style="background-position: ${item.firstNum}px center;"></div>
+				<div class="numStrClass" style="background-position: ${item.secondNum}px center; margin-left:5px;"></div>
+				<div class="numStrClass" style="background-position: ${item.threeNum}px center; margin-left:5px;"></div>
 				<div style="clear:both;"></div>
 			</div>
 	  </td>
@@ -62,7 +62,7 @@ $(function(){
 			$(".cepingUl").html("");
 			for(var j=(e.current-1)*coutPage; j<e.current*coutPage; j++){
 				if(j<date.length){
-					var td = '<tr><td style="width:230px;">'+date[j].creantime+'</td><td style="width:415px;"><div style="width:130px; margin:0px auto;"><div class="numStrClass">'+date[j].firstNum+'</div><div class="numStrClass" style="margin-left:5px;">'+date[j].secondNum+'</div><div class="numStrClass" style="margin-left:5px;">'+date[j].threeNum+'</div><div style="clear:both;"></div></div></td><td style="width:97px;">'+date[j].allNum+'</td><td style="width:97px;">'+date[j].bigorsam+'</td><td style="width:98px;">'+date[j].onlyAll+'</td></tr>';
+					var td = '<tr><td style="width:230px;">'+date[j].creantime+'</td><td style="width:415px;"><div style="width:110px; margin:0px auto;"><div class="numStrClass" style="background-position: '+date[j].firstNum+'px center;"></div><div class="numStrClass" style="background-position: '+date[j].secondNum+'px center; margin-left:5px;"></div><div class="numStrClass" style="background-position: '+date[j].threeNum+'px center; margin-left:5px;"></div><div style="clear:both;"></div></div></td><td style="width:97px;">'+date[j].allNum+'</td><td style="width:97px;">'+date[j].bigorsam+'</td><td style="width:98px;">'+date[j].onlyAll+'</td></tr>';
 					$(".cepingUl").append(td);
 				}
 			}

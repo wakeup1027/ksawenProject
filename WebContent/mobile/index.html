@@ -15,8 +15,8 @@ button{margin-left:15px; cursor:pointer;}
 </head>
 
 <body style="background:#FAFAFA;">
-<div id="zoushiBox" style="width: 940px;margin:0px auto; margin-top:15px; display:block;">
-<table class="titleTable" height="61" border="0" cellpadding="0" cellspacing="0" style="text-align:center; border-right:1px solid #f1f1f1;">
+<div id="zoushiBox" style="width: 100%;margin:0px auto; margin-top:15px; display:block;">
+<table class="titleTable" border="0" cellpadding="0" cellspacing="0" style="width: 100%; height:61px; text-align:center; border-right:1px solid #f1f1f1;">
   <tr>
     <td style="width:60px;" rowspan="2" scope="col">期号</td>
     <td style="width:116px;" colspan="3" rowspan="2" scope="col">开奖号码</td>
@@ -30,7 +30,7 @@ button{margin-left:15px; cursor:pointer;}
     <td style="width:35px">双</td>
   </tr>
 </table>
-<table id="zoushiPuture" border="0" cellpadding="0" cellspacing="0" style="text-align:center; border-bottom:1px solid #f1f1f1; border-right:1px solid #f1f1f1;"></table>
+<table id="zoushiPuture" border="0" cellpadding="0" cellspacing="0" style="width:100%;text-align:center; border-bottom:1px solid #f1f1f1; border-right:1px solid #f1f1f1;"></table>
 <div id="canvasBox1"></div>
 <div id="canvasBox2"></div>
 <div id="canvasBox3"></div>
@@ -51,15 +51,15 @@ for(var j=0;j<date.length;j++){
 	var firstNum = chdate.substring(0,1);
 	var secondNum = chdate.substring(1,2);
 	var threeNum = chdate.substring(2,3);
-	$("#zoushiPuture").append('<tr><td style="width:60px;">'+subStr(date[j].qiNum)+'期</td><td style="width:38px; background:#FFFFEE;">'+firstNum+'</td><td style="width:38px; background:#FFFFEE;">'+secondNum+'</td><td style="width:38px; background:#FFFFEE;">'+threeNum+'</td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td></tr>');
+	$("#zoushiPuture").append('<tr><td style="width:60px;">'+subStr(date[j].qiNum)+'期</td><td style="width:39px; background:#FFFFEE;">'+firstNum+'</td><td style="width:40px; background:#FFFFEE;">'+secondNum+'</td><td style="width:40px; background:#FFFFEE;">'+threeNum+'</td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td></tr>');
 
 	//写开奖号码公布
     var tdArr = $("#zoushiPuture").find("tr").eq(j).find("td");
 	
 	//写和值
 	var allRes = parseInt(firstNum)+parseInt(secondNum)+parseInt(threeNum);
-    tdArr.eq(writResult(allRes)).text(allRes);
-    tdArr.eq(writResult(allRes)).css({"background":"#3E94F1","color":"#fff"});
+    /*tdArr.eq(writResult(allRes)).text(allRes);
+    tdArr.eq(writResult(allRes)).css({"background":"#3E94F1","color":"#fff"});*/
 	
 	//整理画和值的线的坐标
 	/*var helfHeight = parseInt(tdArr.eq(writResult(allRes)).height())/2;
