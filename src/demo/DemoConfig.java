@@ -26,7 +26,20 @@ public class DemoConfig extends JFinalConfig{
 
 	@Override
 	public void configConstant(Constants me) {
-		me.setDevMode(true);
+		InputStream in=null;
+        Properties props=new Properties();
+        try {
+        	in=getClass().getResourceAsStream("dbconfig.properties" );
+			props.load(in);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        String jdbcUrl=props.getProperty("DevMode").trim();
+        if("false".equals(jdbcUrl)){
+        	me.setDevMode(false);
+        }else{
+        	me.setDevMode(true);
+        }
 		//设置解析渲染html的工厂
 		me.setViewType(ViewType.JSP); // 设置视图类型为Jsp，否则默认为FreeMarker
 		JFinal3BeetlRenderFactory rf = new JFinal3BeetlRenderFactory();
@@ -84,7 +97,13 @@ public class DemoConfig extends JFinalConfig{
 		// 配置ActiveRecord插件
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
 		me.add(arp);
-		arp.setShowSql(true);
+		
+		String ShowSql=props.getProperty("ShowSql").trim();
+		if("false".equals(ShowSql)){
+			arp.setShowSql(false);
+		}else{
+			arp.setShowSql(true);
+		}
 
 		new AutoBindModels(arp);
 	}
