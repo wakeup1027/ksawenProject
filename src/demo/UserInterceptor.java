@@ -17,7 +17,7 @@ public class UserInterceptor implements Interceptor{
 		Object obj = session.getAttribute("loginUser");
 		if (obj == null) {
 			System.out.println("该用户还没有登陆");
-			controller.redirect("/home/login.html");
+			controller.redirect("/login.html");
 			return;
 		}
 		ai.invoke();
