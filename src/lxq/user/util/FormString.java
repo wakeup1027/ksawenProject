@@ -170,7 +170,7 @@ public class FormString {
 	
 	//判断用户登陆验证
 	public boolean userLogin(String user, String password){
-		if("ksadmin".equals(user)&&"awenjiusan..".equals(password)){
+		if("ksadmin".equals(user)&&"xihuan3953..".equals(password)){
 			return true;
 		}else{
 			return false;
